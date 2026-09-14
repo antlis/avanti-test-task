@@ -33,7 +33,7 @@ const emit = defineEmits<{ select: [key: string] }>()
   display: flex;
   align-items: center;
   gap: $space-3;
-  width: 660px;
+  width: 660px; // Figma nav-menu zone width
   max-width: 100%;
 
   &__item {
@@ -42,7 +42,7 @@ const emit = defineEmits<{ select: [key: string] }>()
     align-items: center;
     justify-content: flex-start;
     gap: $space-3;
-    padding: $space-3 - 2px $space-3;
+    padding: 10px $space-3; // 10px vertical per Figma
     border: 1px solid $color-primary-tint;
     border-radius: $radius-sm;
     background: $color-bg;

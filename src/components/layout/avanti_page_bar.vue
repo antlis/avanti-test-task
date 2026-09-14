@@ -25,6 +25,6 @@ defineProps<{ user: PageUser; breadcrumb?: Crumb[] }>()
   align-items: center;
   justify-content: space-between;
   gap: $space-4;
-  padding-block: $space-3 - 2px;
+  padding-block: 10px; // Figma vertical inset
 }
 </style>

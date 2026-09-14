@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import AvantiIcon from '@/components/ui/avanti_icon.vue'
-import AvantiBadge from '@/components/ui/avanti_badge.vue'
 import AvantiNavMenu, { type NavItem } from '@/components/layout/avanti_nav_menu.vue'
+import AvantiAssistenzaButton from '@/components/layout/avanti_assistenza_button.vue'
 
 withDefaults(defineProps<{ assistenzaCount?: number }>(), { assistenzaCount: 0 })
 
@@ -33,18 +32,7 @@ const active = ref('home')
         />
       </div>
 
-      <button type="button" class="header__assistenza">
-        <AvantiIcon name="chat" :size="18" />
-        <span class="header__assistenza-label">Assistenza</span>
-        <AvantiBadge
-          v-if="assistenzaCount > 0"
-          variant="count"
-          tone="danger"
-          class="header__assistenza-badge"
-        >
-          {{ assistenzaCount }}
-        </AvantiBadge>
-      </button>
+      <AvantiAssistenzaButton :count="assistenzaCount" />
     </div>
   </header>
 </template>
@@ -71,7 +59,7 @@ const active = ref('home')
     gap: $space-4;
 
     @include desktop {
-      gap: 52px;
+      gap: 52px; // Figma spacing between logo and nav menu
       padding: $space-5 0;
     }
   }
@@ -102,7 +90,7 @@ const active = ref('home')
     line-height: 1;
     font-weight: $fw-bold;
     letter-spacing: -0.05em;
-    color: #000000;
+    color: $color-ink;
   }
 
   // Menu is hidden on small screens; the mobile bottom nav replaces it (Round 5).
@@ -112,44 +100,6 @@ const active = ref('home')
     @include desktop {
       display: flex;
     }
-  }
-
-  &__assistenza {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: $space-3;
-    padding: $space-3 $space-3;
-    border-radius: $radius-sm;
-    background: $color-primary;
-    color: $color-surface;
-    font-weight: $fw-semibold;
-    transition: background 0.15s ease;
-
-    &:hover {
-      background: $color-primary-dark;
-    }
-
-    &:focus-visible {
-      @include focus-ring;
-    }
-  }
-
-  &__assistenza-label {
-    display: none;
-    font-size: 16px;
-    text-transform: uppercase;
-
-    @include tablet {
-      display: inline;
-    }
-  }
-
-  &__assistenza-badge {
-    position: absolute;
-    top: -10px;
-    right: -8px;
-    border: 2px solid $color-surface;
   }
 }
 </style>

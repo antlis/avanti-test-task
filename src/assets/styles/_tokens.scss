@@ -61,6 +61,7 @@ $shadow-glow: 0 0 10px rgba(36, 145, 170, 1); // primary button hover glow
 $container-max: 1440px; // Figma design width
 $container-pad: 72px; // horizontal content inset on desktop
 $container-pad-mobile: 16px;
+$bottom-nav-height: 62px; // mobile fixed tab bar (Figma)
 
 // -- Breakpoints (mobile-first) ----------------------------------------------
 $bp-tablet: 768px;

@@ -30,15 +30,6 @@ withDefaults(defineProps<{ count?: number }>(), { count: 0 })
   position: relative;
   display: inline-flex;
 
-  // Collapse to icon-only on the smallest screens.
-  :deep(.btn__label) {
-    display: none;
-
-    @include tablet {
-      display: inline;
-    }
-  }
-
   &__badge {
     position: absolute;
     top: -10px;

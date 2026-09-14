@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const props = withDefaults(
   defineProps<{ src?: string; alt?: string; size?: 'md' | 'lg' }>(),
@@ -8,6 +8,14 @@ const props = withDefaults(
 
 const failed = ref(false)
 const showImage = computed(() => Boolean(props.src) && !failed.value)
+
+// Retry the image when the source changes after a previous failure.
+watch(
+  () => props.src,
+  () => {
+    failed.value = false
+  }
+)
 
 const initials = computed(() =>
   props.alt

@@ -20,11 +20,8 @@ defineProps<{ items: Crumb[] }>()
         >
           {{ item.label }}
         </RouterLink>
-        <span
-          v-else
-          class="breadcrumb__current"
-          :aria-current="item.current ? 'page' : undefined"
-        >
+        <!-- Non-linked crumbs are the current page (nav data guarantees a `to` otherwise). -->
+        <span v-else class="breadcrumb__current" aria-current="page">
           {{ item.label }}
         </span>
       </li>

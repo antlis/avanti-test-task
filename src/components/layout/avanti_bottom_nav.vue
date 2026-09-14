@@ -37,7 +37,7 @@ const active = ref('home')
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 62px;
+  height: $bottom-nav-height;
   padding: 0 $space-5;
   background: $color-surface;
   border-top: 2px solid $color-primary;
@@ -73,7 +73,7 @@ const active = ref('home')
     align-items: center;
     justify-content: center;
     gap: $space-1;
-    height: 43px;
+    height: 43px; // Figma: filled tab height
     padding: 4px $space-4;
     border-radius: $radius-sm;
     background: $color-primary;

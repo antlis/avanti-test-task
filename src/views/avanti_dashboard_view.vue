@@ -35,8 +35,8 @@ const breadcrumb = [
 
   &__body {
     @include container;
-    // Reserve space for the fixed mobile bottom nav (62px + breathing room).
-    padding-bottom: 86px;
+    // Clear the fixed mobile bottom nav + breathing room.
+    padding-bottom: calc(#{$bottom-nav-height} + #{$space-6});
 
     @include desktop {
       padding-bottom: $space-10;

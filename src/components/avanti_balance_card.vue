@@ -19,7 +19,7 @@ const props = withDefaults(
   { currency: '€', footnote: '', ctaLabel: 'Preleva i fondi' }
 )
 
-const emit = defineEmits<{ withdraw: [] }>()
+const emit = defineEmits<{ withdraw: []; openPdf: [] }>()
 
 const formattedAmount = computed(
   () => `${props.currency} ${props.amount.toLocaleString('fr-FR')}`
@@ -37,11 +37,31 @@ const formattedAmount = computed(
     </header>
 
     <div class="balance__amount-block">
-      <p class="balance__amount">{{ formattedAmount }}</p>
+      <div class="balance__amount-row">
+        <p class="balance__amount">{{ formattedAmount }}</p>
+        <!-- Mobile-only quick action -->
+        <AvantiButton
+          variant="inverse"
+          size="compact"
+          class="balance__prestito"
+          @click="emit('openPdf')"
+        >
+          <template #leading>
+            <AvantiIcon name="document" :size="16" />
+          </template>
+          Prestito
+        </AvantiButton>
+      </div>
       <p class="balance__caption">{{ caption }}</p>
     </div>
 
-    <AvantiButton variant="inverse" size="lg" block @click="emit('withdraw')">
+    <AvantiButton
+      variant="inverse"
+      size="lg"
+      block
+      class="balance__cta"
+      @click="emit('withdraw')"
+    >
       <template #leading>
         <AvantiIcon name="bank" :size="24" />
       </template>
@@ -51,6 +71,7 @@ const formattedAmount = computed(
       </template>
     </AvantiButton>
 
+    <!-- Desktop-only footnote -->
     <div v-if="footnote" class="balance__footer">
       <span class="balance__footer-line" aria-hidden="true"></span>
       <span class="balance__footer-text">{{ footnote }}</span>
@@ -63,13 +84,14 @@ const formattedAmount = computed(
   display: flex;
   flex-direction: column;
   gap: $space-4;
-  padding: $space-5;
+  padding: $space-6;
   background: $gradient-primary;
   border-radius: $radius-xl;
   box-shadow: $shadow-teal;
   color: $color-surface;
 
   @include desktop {
+    gap: $space-5;
     padding: $space-8;
   }
 
@@ -83,19 +105,28 @@ const formattedAmount = computed(
   &__labels {
     display: flex;
     flex-direction: column;
-    gap: $space-5;
+    gap: $space-2;
+
+    @include desktop {
+      gap: $space-5;
+    }
   }
 
+  // Mobile: light, sentence case. Desktop: semibold uppercase.
   &__label {
     font-size: 13px;
-    font-weight: $fw-semibold;
+    font-weight: $fw-regular;
     letter-spacing: 0.01em;
-    text-transform: uppercase;
     color: $color-primary-tint;
+
+    @include desktop {
+      font-weight: $fw-semibold;
+      text-transform: uppercase;
+    }
   }
 
   &__sublabel {
-    font-size: 13px;
+    font-size: 10px;
     font-weight: $fw-semibold;
     letter-spacing: 0.01em;
     text-transform: uppercase;
@@ -110,6 +141,13 @@ const formattedAmount = computed(
     display: flex;
     flex-direction: column;
     gap: $space-1;
+  }
+
+  &__amount-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-3;
   }
 
   &__amount {
@@ -128,15 +166,34 @@ const formattedAmount = computed(
     color: $color-primary-tint;
   }
 
+  // Prestito quick action — mobile only.
+  &__prestito {
+    flex-shrink: 0;
+
+    @include desktop {
+      display: none;
+    }
+  }
+
+  // The main CTA glows white to pop on the gradient.
+  &__cta {
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.9);
+  }
+
   &__arrow {
     font-size: 18px;
   }
 
+  // Footnote — desktop only.
   &__footer {
-    display: flex;
+    display: none;
     align-items: center;
     gap: $space-4;
     padding-top: $space-2;
+
+    @include desktop {
+      display: flex;
+    }
   }
 
   &__footer-line {

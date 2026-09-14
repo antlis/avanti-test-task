@@ -84,11 +84,10 @@ withDefaults(
     box-shadow: $shadow-2xs;
   }
 
-  // Light CTA on a dark/gradient surface (white with a soft white glow).
+  // Light button on a dark/gradient surface (white with teal text).
   &--inverse {
     background: $color-surface;
     color: $color-primary;
-    box-shadow: 0 0 22px rgba(255, 255, 255, 0.9);
   }
 
   // Hover (from Figma "Кнопка действия" Variant2): teal glow.

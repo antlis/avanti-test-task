@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import AvantiIcon from '@/components/ui/avanti_icon.vue'
-import type { IconName } from '@/components/ui/icon_names'
-
-export interface NavItem {
-  key: string
-  label: string
-  icon: IconName
-}
+import type { NavItem } from '@/types/navigation'
 
 defineProps<{ items: NavItem[]; active: string }>()
 const emit = defineEmits<{ select: [key: string] }>()

@@ -1,17 +1,24 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import AvantiNavMenu, { type NavItem } from '@/components/layout/avanti_nav_menu.vue'
+import AvantiIcon from '@/components/ui/avanti_icon.vue'
+import AvantiBadge from '@/components/ui/avanti_badge.vue'
+import AvantiAvatar from '@/components/ui/avanti_avatar.vue'
+import AvantiNavMenu from '@/components/layout/avanti_nav_menu.vue'
 import AvantiAssistenzaButton from '@/components/layout/avanti_assistenza_button.vue'
+import { mainNavItems } from '@/config/navigation'
 
-withDefaults(defineProps<{ assistenzaCount?: number }>(), { assistenzaCount: 0 })
+interface HeaderUser {
+  name: string
+  email: string
+  avatar?: string
+}
 
-// App-level navigation is static, not server data.
-const navItems: NavItem[] = [
-  { key: 'home', label: 'Home', icon: 'home' },
-  { key: 'documenti', label: 'Documenti', icon: 'document' },
-  { key: 'profilo', label: 'Profilo', icon: 'profile' }
-]
+withDefaults(
+  defineProps<{ user: HeaderUser; notificationCount?: number }>(),
+  { notificationCount: 0 }
+)
+
 const active = ref('home')
 </script>
 
@@ -24,15 +31,31 @@ const active = ref('home')
           <span class="header__wordmark">Avanti</span>
         </RouterLink>
 
-        <AvantiNavMenu
-          class="header__nav"
-          :items="navItems"
-          :active="active"
-          @select="active = $event"
-        />
+        <div class="header__nav">
+          <AvantiNavMenu :items="mainNavItems" :active="active" @select="active = $event" />
+        </div>
       </div>
 
-      <AvantiAssistenzaButton :count="assistenzaCount" />
+      <!-- Desktop: full Assistenza button -->
+      <div class="header__assistenza">
+        <AvantiAssistenzaButton :count="notificationCount" />
+      </div>
+
+      <!-- Mobile: notification bell + avatar -->
+      <div class="header__mobile">
+        <button type="button" class="header__bell" aria-label="Notifiche">
+          <AvantiIcon name="bell" :size="24" />
+          <AvantiBadge
+            v-if="notificationCount > 0"
+            variant="count"
+            tone="danger"
+            class="header__bell-badge"
+          >
+            {{ notificationCount }}
+          </AvantiBadge>
+        </button>
+        <AvantiAvatar :src="user.avatar" :alt="user.name" size="md" />
+      </div>
     </div>
   </header>
 </template>
@@ -49,10 +72,13 @@ const active = ref('home')
     align-items: center;
     justify-content: space-between;
     gap: $space-4;
-    padding-block: $space-4;
+    padding-block: $space-3;
+
+    @include desktop {
+      padding-block: $space-4;
+    }
   }
 
-  // Logo + menu group, with the nav row's vertical breathing space.
   &__inner {
     display: flex;
     align-items: center;
@@ -67,9 +93,13 @@ const active = ref('home')
   &__brand {
     display: flex;
     align-items: center;
-    gap: $space-3;
+    gap: $space-2;
     border-radius: $radius-sm;
     transition: opacity 0.15s ease;
+
+    @include desktop {
+      gap: $space-3;
+    }
 
     &:hover {
       opacity: 0.85;
@@ -81,25 +111,63 @@ const active = ref('home')
   }
 
   &__logo {
-    width: 48px;
+    width: 36px;
     height: auto;
+
+    @include desktop {
+      width: 48px;
+    }
   }
 
   &__wordmark {
-    font-size: 32px;
+    font-size: 24px;
     line-height: 1;
     font-weight: $fw-bold;
     letter-spacing: -0.05em;
     color: $color-wordmark;
+
+    @include desktop {
+      font-size: 32px;
+    }
   }
 
-  // Menu is hidden on small screens; the mobile bottom nav replaces it (Round 5).
-  &__nav {
+  // Desktop-only nav menu + Assistenza button.
+  &__nav,
+  &__assistenza {
     display: none;
 
     @include desktop {
       display: flex;
     }
+  }
+
+  // Mobile-only bell + avatar.
+  &__mobile {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+
+    @include desktop {
+      display: none;
+    }
+  }
+
+  &__bell {
+    position: relative;
+    display: inline-flex;
+    color: $color-text-strong;
+    border-radius: $radius-sm;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__bell-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    border: 2px solid $color-surface;
   }
 }
 </style>

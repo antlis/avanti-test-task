@@ -5,6 +5,7 @@ export type IconName =
   | 'document'
   | 'profile'
   | 'chat'
+  | 'bell'
   | 'check'
   | 'chevron-down'
   | 'bank'

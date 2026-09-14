@@ -20,11 +20,16 @@ defineProps<{ user: PageUser; breadcrumb?: Crumb[] }>()
 
 <style lang="scss" scoped>
 .page-bar {
-  @include container;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: $space-4;
-  padding-block: 10px; // Figma vertical inset
+  // Desktop-only: on mobile the avatar lives in the header instead.
+  display: none;
+
+  @include desktop {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-4;
+    padding-block: 10px; // Figma vertical inset
+  }
 }
 </style>

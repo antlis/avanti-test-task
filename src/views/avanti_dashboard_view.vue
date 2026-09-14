@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AvantiHeader from '@/components/layout/avanti_header.vue'
 import AvantiPageBar from '@/components/layout/avanti_page_bar.vue'
+import AvantiBottomNav from '@/components/layout/avanti_bottom_nav.vue'
 
 // Page content will move to the Pinia store in Round 2; literals for now.
 const user = {
@@ -16,12 +17,14 @@ const breadcrumb = [
 
 <template>
   <div class="dashboard">
-    <AvantiHeader :assistenza-count="4" />
+    <AvantiHeader :user="user" :notification-count="4" />
     <AvantiPageBar :user="user" :breadcrumb="breadcrumb" />
 
     <main class="dashboard__body">
       <!-- Content sections are added in the following rounds. -->
     </main>
+
+    <AvantiBottomNav />
   </div>
 </template>
 
@@ -32,7 +35,12 @@ const breadcrumb = [
 
   &__body {
     @include container;
-    padding-bottom: $space-10;
+    // Reserve space for the fixed mobile bottom nav (62px + breathing room).
+    padding-bottom: 86px;
+
+    @include desktop {
+      padding-bottom: $space-10;
+    }
   }
 }
 </style>

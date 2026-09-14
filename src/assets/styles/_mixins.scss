@@ -1,0 +1,37 @@
+@use 'tokens' as *;
+
+// Mobile-first media helpers: styles cascade up from the smallest screen.
+@mixin from($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @include from($bp-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @include from($bp-desktop) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @include from($bp-wide) {
+    @content;
+  }
+}
+
+@mixin card($radius: $radius-lg) {
+  background: $color-surface;
+  border-radius: $radius;
+  box-shadow: $shadow-card;
+}
+
+@mixin focus-ring {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}

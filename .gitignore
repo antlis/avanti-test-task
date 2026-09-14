@@ -1,0 +1,23 @@
+node_modules
+dist
+dist-ssr
+coverage
+*.local
+.env
+.env.*.local
+
+# Test artifacts
+playwright-report
+test-results
+blob-report
+
+# Local dev tooling / scratch (screenshots, figma refs, snapshots)
+scratch
+
+# Editor / OS
+.DS_Store
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

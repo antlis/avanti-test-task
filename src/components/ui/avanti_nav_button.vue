@@ -8,10 +8,9 @@ withDefaults(
     label: string
     active?: boolean
     variant?: 'pill' | 'tab'
-    filled?: boolean
     iconSize?: number
   }>(),
-  { active: false, variant: 'pill', filled: false, iconSize: 20 }
+  { active: false, variant: 'pill', iconSize: 20 }
 )
 </script>
 
@@ -19,10 +18,7 @@ withDefaults(
   <button
     type="button"
     class="nav-button"
-    :class="[
-      `nav-button--${variant}`,
-      { 'nav-button--active': active, 'nav-button--filled': filled }
-    ]"
+    :class="[`nav-button--${variant}`, { 'nav-button--active': active }]"
   >
     <AvantiIcon :name="icon" :size="iconSize" />
     <span class="nav-button__label">{{ label }}</span>
@@ -74,22 +70,6 @@ withDefaults(
   &--pill#{&}--active {
     background: $color-primary-tint;
     border-color: transparent;
-  }
-
-  // Filled tab — the highlighted "Assistenza" entry in the bottom nav.
-  &--filled {
-    height: 43px; // Figma: filled tab height
-    padding: 4px $space-4;
-    border-radius: $radius-sm;
-    background: $color-primary;
-    color: $color-surface;
-    font-size: 12px;
-    font-weight: $fw-semibold;
-    text-transform: uppercase;
-
-    &:hover {
-      background: $color-primary-dark;
-    }
   }
 
   &:focus-visible {

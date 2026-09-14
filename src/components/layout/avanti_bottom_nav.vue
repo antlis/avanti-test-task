@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 import AvantiNavButton from '@/components/ui/avanti_nav_button.vue'
+import AvantiAssistenzaButton from '@/components/layout/avanti_assistenza_button.vue'
 import { mainNavItems } from '@/config/navigation'
 
 // Highlighted page; a router would drive this in a multi-screen app.
@@ -20,7 +21,7 @@ const active = ref('home')
       @click="active = item.key"
     />
 
-    <AvantiNavButton variant="tab" filled icon="chat" label="Assistenza" :icon-size="16" />
+    <AvantiAssistenzaButton variant="tab" />
   </nav>
 </template>
 

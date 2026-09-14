@@ -1,40 +1,77 @@
 <script setup lang="ts">
-import AvantiButton from '@/components/ui/avanti_button.vue'
 import AvantiIcon from '@/components/ui/avanti_icon.vue'
 import AvantiBadge from '@/components/ui/avanti_badge.vue'
 
-withDefaults(defineProps<{ count?: number }>(), { count: 0 })
+withDefaults(
+  defineProps<{
+    // bar = desktop header (horizontal, with counter); tab = mobile bottom nav.
+    variant?: 'bar' | 'tab'
+    count?: number
+  }>(),
+  { variant: 'bar', count: 0 }
+)
 </script>
 
 <template>
-  <div class="assistenza">
-    <AvantiButton size="compact" uppercase>
-      <template #leading>
-        <AvantiIcon name="chat" :size="18" />
-      </template>
-      Assistenza
-    </AvantiButton>
+  <button type="button" class="assistenza" :class="`assistenza--${variant}`">
+    <AvantiIcon name="chat" :size="variant === 'tab' ? 16 : 18" />
+    <span class="assistenza__label">Assistenza</span>
     <AvantiBadge
-      v-if="count > 0"
+      v-if="variant === 'bar' && count > 0"
       variant="count"
       tone="danger"
       class="assistenza__badge"
     >
       {{ count }}
     </AvantiBadge>
-  </div>
+  </button>
 </template>
 
 <style lang="scss" scoped>
 .assistenza {
   position: relative;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-primary;
+  color: $color-surface;
+  font-weight: $fw-semibold;
+  text-transform: uppercase;
+  border-radius: $radius-sm;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  // Desktop header: horizontal, with notification badge.
+  &--bar {
+    gap: $space-3;
+    padding: 10px $space-3;
+    font-size: 16px;
+  }
+
+  // Mobile bottom nav: vertical tab, no badge.
+  &--tab {
+    flex-direction: column;
+    gap: $space-1;
+    height: 43px; // Figma: filled tab height
+    padding: 4px $space-4;
+    font-size: 12px;
+  }
+
+  &__label {
+    white-space: nowrap;
+  }
 
   &__badge {
     position: absolute;
     top: -10px;
     right: -8px;
-    z-index: 1;
     border: 2px solid $color-surface;
   }
 }

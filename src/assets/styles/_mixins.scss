@@ -25,6 +25,18 @@
   }
 }
 
+// Centered content column capped at the Figma design width.
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $container-pad-mobile;
+
+  @include desktop {
+    padding-inline: $container-pad;
+  }
+}
+
 @mixin card($radius: $radius-lg) {
   background: $color-surface;
   border-radius: $radius;

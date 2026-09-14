@@ -45,12 +45,15 @@ npm run dev            # http://localhost:5173
 
 ```
 src/
+  assets/icons/      SVG icons (auto-registered by avanti_icon.vue)
   assets/styles/     Design tokens, mixins, reset (auto-injected into <style>)
-  components/        Reusable components (added incrementally)
+  components/        Reusable components (flat, one file each)
   composables/       Reusable logic (use_async_state, …)
+  config/            App constants (navigation, …)
   router/            Route definitions
   services/          Axios instance + API services
   stores/            Pinia stores
+  types/             Shared TS types
   views/             Route-level screens
 tests/
   unit/              Vitest + Vue Test Utils
@@ -62,27 +65,25 @@ public/assets/       Logo + avatar assets exported from Figma
 
 Screen: **"Дом готовые этапы"** (Avanti dashboard). Built and reviewed one at a time:
 
-- [ ] `ui/avanti_button.vue`
-- [ ] `ui/avanti_badge.vue`
-- [ ] `ui/avanti_icon.vue`
-- [ ] `ui/avanti_avatar.vue`
-- [ ] `ui/avanti_card.vue`
-- [ ] `ui/avanti_progress_segments.vue`
-- [ ] `ui/avanti_tab_switch.vue`
-- [ ] `ui/avanti_text_field.vue`
-- [ ] `ui/avanti_amount_slider.vue`
-- [ ] `ui/avanti_state_view.vue` (loading / error / empty / retry)
-- [ ] `layout/avanti_header.vue`
-- [ ] `layout/avanti_nav_menu.vue`
-- [ ] `layout/avanti_user_summary.vue`
-- [ ] `layout/avanti_breadcrumb.vue`
-- [ ] `layout/avanti_bottom_nav.vue`
-- [ ] `dashboard/avanti_balance_card.vue`
-- [ ] `dashboard/avanti_checklist_card.vue`
-- [ ] `dashboard/avanti_checklist_item.vue`
-- [ ] `dashboard/avanti_payout_method_card.vue`
-- [ ] `dashboard/avanti_amount_summary.vue`
-- [ ] `dashboard/avanti_chat_popup.vue`
+- [x] `avanti_icon.vue`
+- [x] `avanti_badge.vue`
+- [x] `avanti_avatar.vue`
+- [x] `avanti_button.vue`
+- [x] `avanti_nav_button.vue` (pill / tab — shared by header menu + bottom nav)
+- [x] `avanti_assistenza_button.vue` (bar / tab variants)
+- [x] `avanti_header.vue`
+- [x] `avanti_nav_menu.vue`
+- [x] `avanti_user_summary.vue`
+- [x] `avanti_breadcrumb.vue`
+- [x] `avanti_page_bar.vue` (desktop-only)
+- [x] `avanti_bottom_nav.vue` (mobile-only)
+- [ ] `avanti_card.vue`
+- [ ] `avanti_state_view.vue` (loading / error / empty / retry)
+- [ ] `avanti_balance_card.vue`
+- [ ] `avanti_sblocco_card.vue` (+ `avanti_sblocco_step.vue`)
+- [ ] `avanti_progress_segments.vue`
+- [ ] `avanti_checklist_card.vue` (+ `avanti_checklist_item.vue`)
+- [ ] `avanti_chat_popup.vue`
 
 ## Deployment (Vercel)
 

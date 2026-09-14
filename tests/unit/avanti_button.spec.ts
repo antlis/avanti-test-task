@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 
-import AvantiButton from '@/components/ui/avanti_button.vue'
+import AvantiButton from '@/components/avanti_button.vue'
 
 describe('AvantiButton', () => {
   it('renders the default slot and solid/md variant classes', () => {

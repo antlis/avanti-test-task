@@ -6,7 +6,7 @@ import type { IconName } from './icon_names'
 // Every SVG in the icons directory becomes available by filename.
 // `eager` inlines all icon components into this chunk at build time (no async
 // fetch at runtime); the set is small so the bundle cost is negligible.
-const modules = import.meta.glob<Component>('../../assets/icons/*.svg', {
+const modules = import.meta.glob<Component>('../assets/icons/*.svg', {
   query: '?component',
   import: 'default',
   eager: true

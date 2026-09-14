@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import AvantiHeader from '@/components/layout/avanti_header.vue'
-import AvantiPageBar from '@/components/layout/avanti_page_bar.vue'
-import AvantiBottomNav from '@/components/layout/avanti_bottom_nav.vue'
+import AvantiHeader from '@/components/avanti_header.vue'
+import AvantiPageBar from '@/components/avanti_page_bar.vue'
+import AvantiBottomNav from '@/components/avanti_bottom_nav.vue'
 
 // Page content will move to the Pinia store in Round 2; literals for now.
 const user = {

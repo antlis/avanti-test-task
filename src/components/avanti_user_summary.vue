@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AvantiAvatar from '@/components/ui/avanti_avatar.vue'
+import AvantiAvatar from '@/components/avanti_avatar.vue'
 
 defineProps<{ name: string; email: string; avatar?: string }>()
 </script>

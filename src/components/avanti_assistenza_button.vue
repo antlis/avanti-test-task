@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AvantiIcon from '@/components/ui/avanti_icon.vue'
-import AvantiBadge from '@/components/ui/avanti_badge.vue'
+import AvantiIcon from '@/components/avanti_icon.vue'
+import AvantiBadge from '@/components/avanti_badge.vue'
 
 withDefaults(
   defineProps<{

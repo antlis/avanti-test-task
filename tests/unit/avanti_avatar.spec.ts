@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 
-import AvantiAvatar from '@/components/ui/avanti_avatar.vue'
+import AvantiAvatar from '@/components/avanti_avatar.vue'
 
 describe('AvantiAvatar', () => {
   it('renders the image when src is provided', () => {

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import AvantiIcon from '@/components/ui/avanti_icon.vue'
-import AvantiBadge from '@/components/ui/avanti_badge.vue'
-import AvantiAvatar from '@/components/ui/avanti_avatar.vue'
-import AvantiNavMenu from '@/components/layout/avanti_nav_menu.vue'
-import AvantiAssistenzaButton from '@/components/layout/avanti_assistenza_button.vue'
+import AvantiIcon from '@/components/avanti_icon.vue'
+import AvantiBadge from '@/components/avanti_badge.vue'
+import AvantiAvatar from '@/components/avanti_avatar.vue'
+import AvantiNavMenu from '@/components/avanti_nav_menu.vue'
+import AvantiAssistenzaButton from '@/components/avanti_assistenza_button.vue'
 import { mainNavItems } from '@/config/navigation'
 
 interface HeaderUser {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AvantiUserSummary from '@/components/layout/avanti_user_summary.vue'
-import AvantiBreadcrumb, { type Crumb } from '@/components/layout/avanti_breadcrumb.vue'
+import AvantiUserSummary from '@/components/avanti_user_summary.vue'
+import AvantiBreadcrumb, { type Crumb } from '@/components/avanti_breadcrumb.vue'
 
 interface PageUser {
   name: string

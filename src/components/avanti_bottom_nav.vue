@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import AvantiNavButton from '@/components/ui/avanti_nav_button.vue'
-import AvantiAssistenzaButton from '@/components/layout/avanti_assistenza_button.vue'
+import AvantiNavButton from '@/components/avanti_nav_button.vue'
+import AvantiAssistenzaButton from '@/components/avanti_assistenza_button.vue'
 import { mainNavItems } from '@/config/navigation'
 
 // Highlighted page; a router would drive this in a multi-screen app.

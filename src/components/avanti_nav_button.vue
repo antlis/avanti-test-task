@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AvantiIcon from '@/components/ui/avanti_icon.vue'
-import type { IconName } from '@/components/ui/icon_names'
+import AvantiIcon from '@/components/avanti_icon.vue'
+import type { IconName } from '@/components/icon_names'
 
 withDefaults(
   defineProps<{

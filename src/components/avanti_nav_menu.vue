@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AvantiNavButton from '@/components/ui/avanti_nav_button.vue'
+import AvantiNavButton from '@/components/avanti_nav_button.vue'
 import type { NavItem } from '@/types/navigation'
 
 defineProps<{ items: NavItem[]; active: string }>()

@@ -90,7 +90,7 @@ const active = ref('home')
     line-height: 1;
     font-weight: $fw-bold;
     letter-spacing: -0.05em;
-    color: $color-ink;
+    color: $color-wordmark;
   }
 
   // Menu is hidden on small screens; the mobile bottom nav replaces it (Round 5).

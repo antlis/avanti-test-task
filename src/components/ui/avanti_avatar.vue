@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const props = withDefaults(
   defineProps<{ src?: string; alt?: string; size?: 'md' | 'lg' }>(),
   { alt: '', size: 'md' }
 )
+
+const failed = ref(false)
+const showImage = computed(() => Boolean(props.src) && !failed.value)
 
 const initials = computed(() =>
   props.alt
@@ -19,7 +22,13 @@ const initials = computed(() =>
 
 <template>
   <span class="avatar" :class="`avatar--${size}`">
-    <img v-if="src" :src="src" :alt="alt" class="avatar__img" />
+    <img
+      v-if="showImage"
+      :src="src"
+      :alt="alt"
+      class="avatar__img"
+      @error="failed = true"
+    />
     <span v-else class="avatar__initials">{{ initials }}</span>
   </span>
 </template>

@@ -12,7 +12,7 @@ $color-surface: #ffffff;
 $color-border: #e4e4e7;
 $color-border-soft: #f0f2f5;
 
-$color-ink: #000000; // pure black — used only for the Avanti wordmark (per Figma)
+$color-wordmark: #000000; // Avanti wordmark only — do NOT reuse for text
 $color-text-strong: #1a2332;
 $color-text: #71717a;
 $color-text-muted: #a1a1aa;
@@ -54,6 +54,8 @@ $space-10: 40px;
 $shadow-card: 0 4px 16px rgba(26, 35, 50, 0.03);
 $shadow-teal: 0 8px 24px rgba(36, 145, 170, 0.19);
 $shadow-popup: 0 8px 24px rgba(0, 0, 0, 0.25);
+$shadow-2xs: 0 1px 2px rgba(26, 26, 26, 0.05); // default button shadow
+$shadow-glow: 0 0 10px rgba(36, 145, 170, 1); // primary button hover glow
 
 // -- Layout ------------------------------------------------------------------
 $container-max: 1440px; // Figma design width

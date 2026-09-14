@@ -62,20 +62,20 @@ public/assets/       Logo + avatar assets exported from Figma
 
 Screen: **"Дом готовые этапы"** (Avanti dashboard). Built and reviewed one at a time:
 
+- [x] `ui/avanti_icon.vue`
+- [x] `ui/avanti_badge.vue`
+- [x] `ui/avanti_avatar.vue`
 - [ ] `ui/avanti_button.vue`
-- [ ] `ui/avanti_badge.vue`
-- [ ] `ui/avanti_icon.vue`
-- [ ] `ui/avanti_avatar.vue`
 - [ ] `ui/avanti_card.vue`
 - [ ] `ui/avanti_progress_segments.vue`
 - [ ] `ui/avanti_tab_switch.vue`
 - [ ] `ui/avanti_text_field.vue`
 - [ ] `ui/avanti_amount_slider.vue`
 - [ ] `ui/avanti_state_view.vue` (loading / error / empty / retry)
-- [ ] `layout/avanti_header.vue`
-- [ ] `layout/avanti_nav_menu.vue`
-- [ ] `layout/avanti_user_summary.vue`
-- [ ] `layout/avanti_breadcrumb.vue`
+- [x] `layout/avanti_header.vue`
+- [x] `layout/avanti_nav_menu.vue`
+- [x] `layout/avanti_user_summary.vue`
+- [x] `layout/avanti_breadcrumb.vue`
 - [ ] `layout/avanti_bottom_nav.vue`
 - [ ] `dashboard/avanti_balance_card.vue`
 - [ ] `dashboard/avanti_checklist_card.vue`

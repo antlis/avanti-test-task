@@ -54,6 +54,11 @@ $shadow-card: 0 4px 16px rgba(26, 35, 50, 0.03);
 $shadow-teal: 0 8px 24px rgba(36, 145, 170, 0.19);
 $shadow-popup: 0 8px 24px rgba(0, 0, 0, 0.25);
 
+// -- Layout ------------------------------------------------------------------
+$container-max: 1440px; // Figma design width
+$container-pad: 72px; // horizontal content inset on desktop
+$container-pad-mobile: 20px;
+
 // -- Breakpoints (mobile-first) ----------------------------------------------
 $bp-tablet: 768px;
 $bp-desktop: 1024px;

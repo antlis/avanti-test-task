@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import AvantiNavButton from '@/components/ui/avanti_nav_button.vue'
 import AvantiIcon from '@/components/ui/avanti_icon.vue'
 import { mainNavItems } from '@/config/navigation'
 
@@ -10,21 +11,19 @@ const active = ref('home')
 
 <template>
   <nav class="bottom-nav" aria-label="Navigazione principale">
-    <button
+    <AvantiNavButton
       v-for="item in mainNavItems"
       :key="item.key"
-      type="button"
-      class="bottom-nav__item"
-      :class="{ 'bottom-nav__item--active': item.key === active }"
+      variant="tab"
+      :icon="item.icon"
+      :label="item.label"
+      :active="item.key === active"
       @click="active = item.key"
-    >
-      <AvantiIcon :name="item.icon" :size="20" />
-      <span class="bottom-nav__label">{{ item.label }}</span>
-    </button>
+    />
 
     <button type="button" class="bottom-nav__assistenza">
       <AvantiIcon name="chat" :size="16" />
-      <span class="bottom-nav__label">Assistenza</span>
+      <span>Assistenza</span>
     </button>
   </nav>
 </template>
@@ -47,26 +46,7 @@ const active = ref('home')
     display: none;
   }
 
-  &__item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: $space-1;
-    color: $color-text-strong;
-    font-size: 14px;
-    font-weight: $fw-medium;
-
-    &--active {
-      color: $color-primary;
-      font-weight: $fw-semibold;
-    }
-
-    &:focus-visible {
-      @include focus-ring;
-    }
-  }
-
+  // Filled "Assistenza" tab — distinct from the plain nav tabs.
   &__assistenza {
     display: flex;
     flex-direction: column;
@@ -81,6 +61,7 @@ const active = ref('home')
     font-size: 12px;
     font-weight: $fw-semibold;
     text-transform: uppercase;
+    white-space: nowrap;
     transition: background 0.15s ease;
 
     &:hover {
@@ -90,10 +71,6 @@ const active = ref('home')
     &:focus-visible {
       @include focus-ring;
     }
-  }
-
-  &__label {
-    white-space: nowrap;
   }
 }
 </style>

@@ -66,6 +66,7 @@ Screen: **"Дом готовые этапы"** (Avanti dashboard). Built and rev
 - [x] `ui/avanti_badge.vue`
 - [x] `ui/avanti_avatar.vue`
 - [x] `ui/avanti_button.vue`
+- [x] `ui/avanti_nav_button.vue` (pill / tab — shared by header menu + bottom nav)
 - [x] `layout/avanti_assistenza_button.vue` (composes `avanti_button`)
 - [ ] `ui/avanti_card.vue`
 - [ ] `ui/avanti_progress_segments.vue`

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AvantiIcon from '@/components/ui/avanti_icon.vue'
+import AvantiNavButton from '@/components/ui/avanti_nav_button.vue'
 import type { NavItem } from '@/types/navigation'
 
 defineProps<{ items: NavItem[]; active: string }>()
@@ -8,17 +8,17 @@ const emit = defineEmits<{ select: [key: string] }>()
 
 <template>
   <nav class="nav-menu">
-    <button
+    <AvantiNavButton
       v-for="item in items"
       :key="item.key"
-      type="button"
       class="nav-menu__item"
-      :class="{ 'nav-menu__item--active': item.key === active }"
+      variant="pill"
+      :icon="item.icon"
+      :label="item.label"
+      :active="item.key === active"
+      :icon-size="18"
       @click="emit('select', item.key)"
-    >
-      <AvantiIcon :name="item.icon" :size="18" />
-      <span class="nav-menu__label">{{ item.label }}</span>
-    </button>
+    />
   </nav>
 </template>
 
@@ -30,38 +30,9 @@ const emit = defineEmits<{ select: [key: string] }>()
   width: 660px; // Figma nav-menu zone width
   max-width: 100%;
 
+  // Items share the zone width equally.
   &__item {
     flex: 1 1 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: $space-3;
-    padding: 10px $space-3; // 10px vertical per Figma
-    border: 1px solid $color-primary-tint;
-    border-radius: $radius-sm;
-    background: $color-bg;
-    color: $color-text-strong;
-    font-size: 14px;
-    font-weight: $fw-medium;
-    transition: background 0.15s ease, color 0.15s ease;
-
-    &:hover {
-      background: $color-primary-tint;
-    }
-
-    &--active {
-      background: $color-primary-tint;
-      border-color: transparent;
-      color: $color-primary;
-
-      .nav-menu__label {
-        font-weight: $fw-semibold;
-      }
-    }
-
-    &:focus-visible {
-      @include focus-ring;
-    }
   }
 }
 </style>

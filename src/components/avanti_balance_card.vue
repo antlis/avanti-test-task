@@ -63,7 +63,7 @@ const formattedAmount = computed(
       @click="emit('withdraw')"
     >
       <template #leading>
-        <AvantiIcon name="bank" :size="24" />
+        <AvantiIcon name="bank" :size="20" />
       </template>
       {{ ctaLabel }}
       <template #trailing>
@@ -83,15 +83,17 @@ const formattedAmount = computed(
 .balance {
   display: flex;
   flex-direction: column;
-  gap: $space-4;
   padding: $space-6;
   background: $gradient-primary;
   border-radius: $radius-xl;
   box-shadow: $shadow-teal;
   color: $color-surface;
 
+  @media (max-width: 350px) {
+    padding: $space-4;
+  }
+
   @include desktop {
-    gap: $space-5;
     padding: $space-8;
   }
 
@@ -108,14 +110,14 @@ const formattedAmount = computed(
     gap: $space-2;
 
     @include desktop {
-      gap: $space-5;
+      gap: 22px;
     }
   }
 
   // Mobile: light, sentence case. Desktop: semibold uppercase.
   &__label {
     font-size: 13px;
-    font-weight: $fw-regular;
+    font-weight: 300;
     letter-spacing: 0.01em;
     color: $color-primary-tint;
 
@@ -141,6 +143,13 @@ const formattedAmount = computed(
     display: flex;
     flex-direction: column;
     gap: $space-1;
+    margin-top: 12px;
+    margin-bottom: 16px;
+
+    @include desktop {
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
   }
 
   &__amount-row {
@@ -151,10 +160,14 @@ const formattedAmount = computed(
   }
 
   &__amount {
-    font-size: 40px;
+    font-size: 36px;
     font-weight: $fw-bold;
     letter-spacing: -0.015em;
     line-height: 1.1;
+
+    @media (max-width: 350px) {
+      font-size: 28px;
+    }
 
     @include desktop {
       font-size: 52px;
@@ -162,13 +175,14 @@ const formattedAmount = computed(
   }
 
   &__caption {
-    font-size: 14px;
+    font-size: 12px;
     color: $color-primary-tint;
   }
 
   // Prestito quick action — mobile only.
   &__prestito {
     flex-shrink: 0;
+    font-size: 12px;
 
     @include desktop {
       display: none;
@@ -178,6 +192,7 @@ const formattedAmount = computed(
   // The main CTA glows white to pop on the gradient.
   &__cta {
     box-shadow: 0 0 22px rgba(255, 255, 255, 0.9);
+    font-size: 16px;
   }
 
   &__arrow {

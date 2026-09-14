@@ -77,9 +77,9 @@ Screen: **"Дом готовые этапы"** (Avanti dashboard). Built and rev
 - [x] `avanti_breadcrumb.vue`
 - [x] `avanti_page_bar.vue` (desktop-only)
 - [x] `avanti_bottom_nav.vue` (mobile-only)
+- [x] `avanti_balance_card.vue`
 - [ ] `avanti_card.vue`
 - [ ] `avanti_state_view.vue` (loading / error / empty / retry)
-- [ ] `avanti_balance_card.vue`
 - [ ] `avanti_sblocco_card.vue` (+ `avanti_sblocco_step.vue`)
 - [ ] `avanti_progress_segments.vue`
 - [ ] `avanti_checklist_card.vue` (+ `avanti_checklist_item.vue`)

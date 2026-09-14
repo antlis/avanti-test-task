@@ -1,8 +1,8 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    variant?: 'solid' | 'gradient'
-    size?: 'md' | 'compact'
+    variant?: 'solid' | 'gradient' | 'inverse'
+    size?: 'md' | 'compact' | 'lg'
     block?: boolean
     uppercase?: boolean
     disabled?: boolean
@@ -58,6 +58,14 @@ withDefaults(
     padding: 10px $space-3;
   }
 
+  // Prominent CTA (e.g. "Preleva i fondi" on the balance card).
+  &--lg {
+    gap: $space-3;
+    padding: 18px $space-6;
+    border-radius: 14px;
+    font-size: 18px;
+  }
+
   &--block {
     width: 100%;
   }
@@ -76,9 +84,21 @@ withDefaults(
     box-shadow: $shadow-2xs;
   }
 
+  // Light CTA on a dark/gradient surface (white with a soft white glow).
+  &--inverse {
+    background: $color-surface;
+    color: $color-primary;
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.9);
+  }
+
   // Hover (from Figma "Кнопка действия" Variant2): teal glow.
-  &:not(:disabled):hover {
+  &--solid:not(:disabled):hover,
+  &--gradient:not(:disabled):hover {
     box-shadow: $shadow-glow;
+  }
+
+  &--inverse:not(:disabled):hover {
+    background: $color-bg;
   }
 
   &:disabled {

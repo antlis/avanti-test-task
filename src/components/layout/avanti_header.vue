@@ -20,10 +20,10 @@ const active = ref('home')
   <header class="header">
     <div class="header__bar">
       <div class="header__inner">
-        <div class="header__brand">
+        <RouterLink to="/" class="header__brand" aria-label="Avanti — home">
           <img class="header__logo" src="/assets/avanti-logo.svg" alt="" />
           <span class="header__wordmark">Avanti</span>
-        </div>
+        </RouterLink>
 
         <AvantiNavMenu
           class="header__nav"
@@ -80,6 +80,16 @@ const active = ref('home')
     display: flex;
     align-items: center;
     gap: $space-3;
+    border-radius: $radius-sm;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
   }
 
   &__logo {
@@ -114,6 +124,11 @@ const active = ref('home')
     background: $color-primary;
     color: $color-surface;
     font-weight: $fw-semibold;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: $color-primary-dark;
+    }
 
     &:focus-visible {
       @include focus-ring;

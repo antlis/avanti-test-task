@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AvantiIcon from '@/components/ui/avanti_icon.vue'
-import type { IconName } from '@/components/ui/avanti_icon_paths'
+import type { IconName } from '@/components/ui/icon_names'
 
 export interface NavItem {
   key: string

@@ -8,7 +8,10 @@ const user = {
   email: 'ikoei@09gmail.com',
   avatar: '/assets/avatar-marco.png'
 }
-const breadcrumb = [{ label: 'Piattaforma' }, { label: 'Home', current: true }]
+const breadcrumb = [
+  { label: 'Piattaforma', to: '/' },
+  { label: 'Home', current: true }
+]
 </script>
 
 <template>

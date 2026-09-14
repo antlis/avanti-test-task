@@ -1,30 +1,31 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, type Component } from 'vue'
 
-import { iconPaths, type IconName } from './avanti_icon_paths'
+import type { IconName } from './icon_names'
+
+// Every SVG in the icons directory becomes available by filename.
+const modules = import.meta.glob<Component>('../../assets/icons/*.svg', {
+  query: '?component',
+  import: 'default',
+  eager: true
+})
+
+const icons = Object.fromEntries(
+  Object.entries(modules).map(([path, component]) => [
+    path.split('/').pop()!.replace('.svg', ''),
+    component
+  ])
+) as Record<IconName, Component>
 
 const props = withDefaults(defineProps<{ name: IconName; size?: number }>(), {
   size: 20
 })
 
-const paths = computed(() => iconPaths[props.name])
+const icon = computed(() => icons[props.name])
 </script>
 
 <template>
-  <svg
-    class="icon"
-    :width="size"
-    :height="size"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <path v-for="(d, index) in paths" :key="index" :d="d" />
-  </svg>
+  <component :is="icon" class="icon" :width="size" :height="size" />
 </template>
 
 <style lang="scss" scoped>

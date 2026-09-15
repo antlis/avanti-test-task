@@ -5,6 +5,7 @@ import AvantiBottomNav from '@/components/avanti_bottom_nav.vue'
 import AvantiBalanceCard from '@/components/avanti_balance_card.vue'
 import AvantiProcessCard from '@/components/avanti_process_card.vue'
 import AvantiChecklistCard from '@/components/avanti_checklist_card.vue'
+import AvantiChatPopup from '@/components/avanti_chat_popup.vue'
 import { currentUser as user } from '@/config/user'
 import type { ProcessStep } from '@/types/process'
 import type { ChecklistItem } from '@/types/checklist'
@@ -86,6 +87,14 @@ const checklistItems: ChecklistItem[] = [
       </div>
     </main>
 
+    <AvantiChatPopup
+      class="dashboard__chat"
+      name="Schierano Deborah"
+      message="Salve. Mi chiamo Deborah, sarò la sua consulente personale dedicata."
+      avatar="/assets/avatar-deborah.png"
+      :unread="2"
+    />
+
     <AvantiBottomNav />
   </div>
 </template>
@@ -128,6 +137,19 @@ const checklistItems: ChecklistItem[] = [
       flex: 792 1 0;
       min-width: 0;
       gap: $space-8;
+    }
+  }
+
+  // Floating assistant popup — desktop only, fixed to the viewport corner.
+  &__chat {
+    display: none;
+
+    @include desktop {
+      display: flex;
+      position: fixed;
+      right: $space-10;
+      bottom: $space-10;
+      z-index: 20;
     }
   }
 

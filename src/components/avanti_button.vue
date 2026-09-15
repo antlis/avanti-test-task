@@ -44,7 +44,7 @@ withDefaults(
   border-radius: $radius-sm;
   color: $color-surface;
   font-weight: $fw-semibold;
-  font-size: 16px;
+  font-size: rem(16);
   line-height: 20px;
   transition: box-shadow 0.15s ease;
 
@@ -63,7 +63,7 @@ withDefaults(
     gap: $space-3;
     padding: 18px $space-6;
     border-radius: 14px;
-    font-size: 18px;
+    font-size: rem(18);
   }
 
   &--block {

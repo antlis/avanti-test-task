@@ -116,7 +116,7 @@ const formattedAmount = computed(
 
   // Mobile: light, sentence case. Desktop: semibold uppercase.
   &__label {
-    font-size: 13px;
+    font-size: rem(13);
     font-weight: 300;
     letter-spacing: 0.01em;
     color: $color-primary-tint;
@@ -128,14 +128,14 @@ const formattedAmount = computed(
   }
 
   &__sublabel {
-    font-size: 10px;
+    font-size: rem(10);
     font-weight: $fw-semibold;
     letter-spacing: 0.01em;
     text-transform: uppercase;
     color: $color-primary-tint;
 
     @include desktop {
-      font-size: 16px;
+      font-size: rem(16);
     }
   }
 
@@ -160,29 +160,29 @@ const formattedAmount = computed(
   }
 
   &__amount {
-    font-size: 36px;
+    font-size: rem(36);
     font-weight: $fw-bold;
     letter-spacing: -0.015em;
     line-height: 1.1;
 
     @media (max-width: 350px) {
-      font-size: 28px;
+      font-size: rem(28);
     }
 
     @include desktop {
-      font-size: 52px;
+      font-size: rem(52);
     }
   }
 
   &__caption {
-    font-size: 12px;
+    font-size: rem(12);
     color: $color-primary-tint;
   }
 
   // Prestito quick action — mobile only.
   &__prestito {
     flex-shrink: 0;
-    font-size: 12px;
+    font-size: rem(12);
 
     @include desktop {
       display: none;
@@ -192,11 +192,11 @@ const formattedAmount = computed(
   // The main CTA glows white to pop on the gradient.
   &__cta {
     box-shadow: 0 0 22px rgba(255, 255, 255, 0.9);
-    font-size: 16px;
+    font-size: rem(16);
   }
 
   &__arrow {
-    font-size: 18px;
+    font-size: rem(18);
   }
 
   // Footnote — desktop only.
@@ -218,7 +218,7 @@ const formattedAmount = computed(
   }
 
   &__footer-text {
-    font-size: 12px;
+    font-size: rem(12);
     color: $color-primary-tint;
   }
 }

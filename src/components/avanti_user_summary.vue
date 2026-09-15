@@ -26,13 +26,13 @@ defineProps<{ name: string; email: string; avatar?: string }>()
   }
 
   &__name {
-    font-size: 14px;
+    font-size: rem(14);
     font-weight: $fw-semibold;
     color: $color-text-strong;
   }
 
   &__email {
-    font-size: 12px;
+    font-size: rem(12);
     color: $color-text;
   }
 }

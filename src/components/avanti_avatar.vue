@@ -56,13 +56,13 @@ const initials = computed(() =>
   &--md {
     width: 40px;
     height: 40px;
-    font-size: 14px;
+    font-size: rem(14);
   }
 
   &--lg {
     width: 60px;
     height: 60px;
-    font-size: 20px;
+    font-size: rem(20);
   }
 
   &__img {

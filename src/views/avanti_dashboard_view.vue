@@ -3,13 +3,9 @@ import AvantiHeader from '@/components/avanti_header.vue'
 import AvantiPageBar from '@/components/avanti_page_bar.vue'
 import AvantiBottomNav from '@/components/avanti_bottom_nav.vue'
 import AvantiBalanceCard from '@/components/avanti_balance_card.vue'
+import { currentUser as user } from '@/config/user'
 
 // Page content will move to the Pinia store in Round 2; literals for now.
-const user = {
-  name: 'Marco Rossi',
-  email: 'ikoei@09gmail.com',
-  avatar: '/assets/avatar-marco.png'
-}
 const breadcrumb = [
   { label: 'Piattaforma', to: '/' },
   { label: 'Home', current: true }

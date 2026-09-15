@@ -26,7 +26,7 @@ withDefaults(
   &--pill {
     padding: 4px 10px;
     border-radius: $radius-pill;
-    font-size: 11px;
+    font-size: rem(11);
   }
 
   &--count {
@@ -34,7 +34,7 @@ withDefaults(
     height: 22px;
     padding: 0 6px;
     border-radius: $radius-pill;
-    font-size: 11px;
+    font-size: rem(11);
   }
 
   &--danger {

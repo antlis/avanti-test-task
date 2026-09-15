@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed } from 'vue'
 
 import AvantiIcon from '@/components/avanti_icon.vue'
 import AvantiBadge from '@/components/avanti_badge.vue'
@@ -14,12 +14,19 @@ interface HeaderUser {
   avatar?: string
 }
 
-withDefaults(
+const props = withDefaults(
   defineProps<{ user: HeaderUser; notificationCount?: number }>(),
   { notificationCount: 0 }
 )
 
-const active = ref('home')
+const initials = computed(() =>
+  props.user.name
+    .split(' ')
+    .map((word) => word[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
+)
 </script>
 
 <template>
@@ -32,7 +39,7 @@ const active = ref('home')
         </RouterLink>
 
         <div class="header__nav">
-          <AvantiNavMenu :items="mainNavItems" :active="active" @select="active = $event" />
+          <AvantiNavMenu :items="mainNavItems" />
         </div>
       </div>
 
@@ -54,7 +61,10 @@ const active = ref('home')
             {{ notificationCount }}
           </AvantiBadge>
         </button>
-        <AvantiAvatar :src="user.avatar" :alt="user.name" size="md" />
+        <div class="header__profile">
+          <AvantiAvatar :src="user.avatar" :alt="user.name" size="md" />
+          <span class="header__initials">{{ initials }}</span>
+        </div>
       </div>
     </div>
   </header>
@@ -120,14 +130,14 @@ const active = ref('home')
   }
 
   &__wordmark {
-    font-size: 24px;
+    font-size: rem(22);
     line-height: 1;
     font-weight: $fw-bold;
     letter-spacing: -0.05em;
     color: $color-wordmark;
 
     @include desktop {
-      font-size: 32px;
+      font-size: rem(32);
     }
   }
 
@@ -152,10 +162,20 @@ const active = ref('home')
     }
   }
 
+  &__profile {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    :deep(.avatar) {
+      border: 1px solid $color-primary;
+    }
+  }
+
   &__bell {
     position: relative;
     display: inline-flex;
-    color: $color-text-strong;
+    color: $color-primary;
     border-radius: $radius-sm;
 
     &:focus-visible {
@@ -168,6 +188,12 @@ const active = ref('home')
     top: -6px;
     right: -6px;
     border: 2px solid $color-surface;
+  }
+
+  &__initials {
+    font-size: rem(13);
+    font-weight: $fw-semibold;
+    color: $color-text-strong;
   }
 }
 </style>

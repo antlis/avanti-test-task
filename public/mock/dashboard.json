@@ -28,7 +28,7 @@
     }
   ],
   "checklist": {
-    "activeStep": 3,
+    "activeStep": 5,
     "steps": [
       { "icon": "chart", "title": "Simulazione completata" },
       { "icon": "shield", "title": "Credito approvato" },

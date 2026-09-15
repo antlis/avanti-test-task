@@ -4,4 +4,5 @@ export interface NavItem {
   key: string
   label: string
   icon: IconName
+  to: string
 }

@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 import AvantiNavButton from '@/components/avanti_nav_button.vue'
 import AvantiAssistenzaButton from '@/components/avanti_assistenza_button.vue'
 import { mainNavItems } from '@/config/navigation'
 
-// Highlighted page; a router would drive this in a multi-screen app.
-const active = ref('home')
+const route = useRoute()
 </script>
 
 <template>
@@ -17,8 +16,8 @@ const active = ref('home')
       variant="tab"
       :icon="item.icon"
       :label="item.label"
-      :active="item.key === active"
-      @click="active = item.key"
+      :to="item.to"
+      :active="route.path === item.to"
     />
 
     <AvantiAssistenzaButton variant="tab" />

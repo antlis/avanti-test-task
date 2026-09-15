@@ -7,6 +7,13 @@
   }
 }
 
+// Max-width cap for the few narrow-phone overrides that must scope downward.
+@mixin narrow {
+  @media (max-width: $bp-narrow) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @include from($bp-tablet) {
     @content;
@@ -25,7 +32,6 @@
   }
 }
 
-// Centered content column capped at the Figma design width.
 @mixin container {
   width: 100%;
   max-width: $container-max;

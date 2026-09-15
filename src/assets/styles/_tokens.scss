@@ -56,6 +56,7 @@ $shadow-teal: 0 8px 24px rgba(36, 145, 170, 0.19);
 $shadow-popup: 0 8px 24px rgba(0, 0, 0, 0.25);
 $shadow-2xs: 0 1px 2px rgba(26, 26, 26, 0.05); // default button shadow
 $shadow-glow: 0 0 10px rgba(36, 145, 170, 1); // primary button hover glow
+$shadow-glow-active: 0 0 15.39px $color-primary; // active process step (Figma)
 
 // -- Layout ------------------------------------------------------------------
 $container-max: 1440px; // Figma design width
@@ -64,6 +65,7 @@ $container-pad-mobile: 16px;
 $bottom-nav-height: 62px; // mobile fixed tab bar (Figma)
 
 // -- Breakpoints (mobile-first) ----------------------------------------------
+$bp-narrow: 350px; // very small phones — max-width cap for tightened layouts
 $bp-tablet: 768px;
 $bp-desktop: 1024px;
 $bp-wide: 1280px;

@@ -52,7 +52,7 @@ withDefaults(
   &--bar {
     gap: $space-3;
     padding: 10px $space-3;
-    font-size: 16px;
+    font-size: rem(16);
   }
 
   // Mobile bottom nav: vertical tab, no badge.
@@ -61,7 +61,14 @@ withDefaults(
     gap: $space-1;
     height: 43px; // Figma: filled tab height
     padding: 4px $space-4;
-    font-size: 12px;
+    font-size: rem(12);
+
+    // Very narrow phones: icon-only to match the other tabs.
+    @include narrow {
+      .assistenza__label {
+        display: none;
+      }
+    }
   }
 
   &__label {

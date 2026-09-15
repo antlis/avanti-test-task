@@ -31,7 +31,7 @@ defineProps<{ items: Crumb[] }>()
 
 <style lang="scss" scoped>
 .breadcrumb {
-  font-size: 14px;
+  font-size: rem(14);
   font-weight: $fw-medium;
 
   &__list {

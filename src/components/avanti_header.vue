@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed } from 'vue'
 
 import AvantiIcon from '@/components/avanti_icon.vue'
 import AvantiBadge from '@/components/avanti_badge.vue'
@@ -14,12 +14,23 @@ interface HeaderUser {
   avatar?: string
 }
 
-withDefaults(
-  defineProps<{ user: HeaderUser; notificationCount?: number }>(),
-  { notificationCount: 0 }
+const props = withDefaults(
+  defineProps<{
+    user: HeaderUser
+    assistenzaCount?: number
+    bellCount?: number
+  }>(),
+  { assistenzaCount: 0, bellCount: 0 }
 )
 
-const active = ref('home')
+const initials = computed(() =>
+  props.user.name
+    .split(' ')
+    .map((word) => word[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
+)
 </script>
 
 <template>
@@ -32,13 +43,13 @@ const active = ref('home')
         </RouterLink>
 
         <div class="header__nav">
-          <AvantiNavMenu :items="mainNavItems" :active="active" @select="active = $event" />
+          <AvantiNavMenu :items="mainNavItems" />
         </div>
       </div>
 
       <!-- Desktop: full Assistenza button -->
       <div class="header__assistenza">
-        <AvantiAssistenzaButton :count="notificationCount" />
+        <AvantiAssistenzaButton :count="assistenzaCount" />
       </div>
 
       <!-- Mobile: notification bell + avatar -->
@@ -46,15 +57,18 @@ const active = ref('home')
         <button type="button" class="header__bell" aria-label="Notifiche">
           <AvantiIcon name="bell" :size="24" />
           <AvantiBadge
-            v-if="notificationCount > 0"
+            v-if="bellCount > 0"
             variant="count"
             tone="danger"
             class="header__bell-badge"
           >
-            {{ notificationCount }}
+            {{ bellCount }}
           </AvantiBadge>
         </button>
-        <AvantiAvatar :src="user.avatar" :alt="user.name" size="md" />
+        <div class="header__profile">
+          <AvantiAvatar :src="user.avatar" :alt="user.name" size="sm" bordered />
+          <span class="header__initials">{{ initials }}</span>
+        </div>
       </div>
     </div>
   </header>
@@ -65,7 +79,6 @@ const active = ref('home')
   background: $color-surface;
   border-bottom: 1px solid $color-border;
 
-  // Full-bleed bar; content column capped at the Figma design width.
   &__bar {
     @include container;
     display: flex;
@@ -120,14 +133,14 @@ const active = ref('home')
   }
 
   &__wordmark {
-    font-size: 24px;
+    font-size: rem(22);
     line-height: 1;
     font-weight: $fw-bold;
     letter-spacing: -0.05em;
     color: $color-wordmark;
 
     @include desktop {
-      font-size: 32px;
+      font-size: rem(32);
     }
   }
 
@@ -152,10 +165,16 @@ const active = ref('home')
     }
   }
 
+  &__profile {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
   &__bell {
     position: relative;
     display: inline-flex;
-    color: $color-text-strong;
+    color: $color-primary;
     border-radius: $radius-sm;
 
     &:focus-visible {
@@ -168,6 +187,12 @@ const active = ref('home')
     top: -6px;
     right: -6px;
     border: 2px solid $color-surface;
+  }
+
+  &__initials {
+    font-size: rem(13);
+    font-weight: $fw-semibold;
+    color: $color-text-strong;
   }
 }
 </style>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    variant?: 'solid' | 'gradient'
-    size?: 'md' | 'compact'
+    variant?: 'solid' | 'gradient' | 'inverse' | 'soft'
+    size?: 'md' | 'compact' | 'lg'
     block?: boolean
     uppercase?: boolean
     disabled?: boolean
@@ -44,7 +44,7 @@ withDefaults(
   border-radius: $radius-sm;
   color: $color-surface;
   font-weight: $fw-semibold;
-  font-size: 16px;
+  font-size: rem(16);
   line-height: 20px;
   transition: box-shadow 0.15s ease;
 
@@ -56,6 +56,14 @@ withDefaults(
   &--compact {
     gap: $space-3;
     padding: 10px $space-3;
+  }
+
+  // Prominent CTA (e.g. "Preleva i fondi" on the balance card).
+  &--lg {
+    gap: $space-3;
+    padding: 18px $space-6;
+    border-radius: 14px;
+    font-size: rem(18);
   }
 
   &--block {
@@ -76,9 +84,31 @@ withDefaults(
     box-shadow: $shadow-2xs;
   }
 
+  // Light button on a dark/gradient surface (white with teal text).
+  &--inverse {
+    background: $color-surface;
+    color: $color-primary;
+  }
+
+  // Soft teal-tinted pill (e.g. "Hai bisogno di aiuto?").
+  &--soft {
+    background: $color-primary-tint;
+    color: $color-primary;
+    border-radius: $radius-pill;
+
+    &:not(:disabled):hover {
+      background: $color-primary-tint-2;
+    }
+  }
+
   // Hover (from Figma "Кнопка действия" Variant2): teal glow.
-  &:not(:disabled):hover {
+  &--solid:not(:disabled):hover,
+  &--gradient:not(:disabled):hover {
     box-shadow: $shadow-glow;
+  }
+
+  &--inverse:not(:disabled):hover {
+    background: $color-bg;
   }
 
   &:disabled {

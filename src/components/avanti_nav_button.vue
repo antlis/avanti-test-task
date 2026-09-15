@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
+
 import AvantiIcon from '@/components/avanti_icon.vue'
 import type { IconName } from '@/components/icon_names'
 
@@ -6,6 +8,7 @@ withDefaults(
   defineProps<{
     icon: IconName
     label: string
+    to?: string
     active?: boolean
     variant?: 'pill' | 'tab'
     iconSize?: number
@@ -15,14 +18,16 @@ withDefaults(
 </script>
 
 <template>
-  <button
-    type="button"
+  <component
+    :is="to ? RouterLink : 'button'"
+    :to="to"
+    :type="to ? undefined : 'button'"
     class="nav-button"
     :class="[`nav-button--${variant}`, { 'nav-button--active': active }]"
   >
     <AvantiIcon :name="icon" :size="iconSize" />
     <span class="nav-button__label">{{ label }}</span>
-  </button>
+  </component>
 </template>
 
 <style lang="scss" scoped>
@@ -30,7 +35,7 @@ withDefaults(
   display: inline-flex;
   align-items: center;
   color: $color-text-strong;
-  font-size: 14px;
+  font-size: rem(14);
   font-weight: $fw-medium;
   transition: background 0.15s ease, color 0.15s ease;
 
@@ -56,6 +61,13 @@ withDefaults(
     flex-direction: column;
     justify-content: center;
     gap: $space-1;
+
+    // Very narrow phones: icon-only to avoid label crowding.
+    @include narrow {
+      .nav-button__label {
+        display: none;
+      }
+    }
   }
 
   &--active {

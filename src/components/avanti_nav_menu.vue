@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+
 import AvantiNavButton from '@/components/avanti_nav_button.vue'
 import type { NavItem } from '@/types/navigation'
 
-defineProps<{ items: NavItem[]; active: string }>()
-const emit = defineEmits<{ select: [key: string] }>()
+defineProps<{ items: NavItem[] }>()
+
+const route = useRoute()
 </script>
 
 <template>
@@ -15,9 +18,9 @@ const emit = defineEmits<{ select: [key: string] }>()
       variant="pill"
       :icon="item.icon"
       :label="item.label"
-      :active="item.key === active"
+      :to="item.to"
+      :active="route.path === item.to"
       :icon-size="18"
-      @click="emit('select', item.key)"
     />
   </nav>
 </template>

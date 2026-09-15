@@ -2,8 +2,13 @@
 import { computed, ref, watch } from 'vue'
 
 const props = withDefaults(
-  defineProps<{ src?: string; alt?: string; size?: 'md' | 'lg' }>(),
-  { alt: '', size: 'md' }
+  defineProps<{
+    src?: string
+    alt?: string
+    size?: 'sm' | 'md' | 'lg'
+    bordered?: boolean
+  }>(),
+  { alt: '', size: 'md', bordered: false }
 )
 
 const failed = ref(false)
@@ -29,7 +34,7 @@ const initials = computed(() =>
 </script>
 
 <template>
-  <span class="avatar" :class="`avatar--${size}`">
+  <span class="avatar" :class="[`avatar--${size}`, { 'avatar--bordered': bordered }]">
     <img
       v-if="showImage"
       :src="src"
@@ -53,16 +58,26 @@ const initials = computed(() =>
   color: $color-primary;
   font-weight: $fw-semibold;
 
+  &--bordered {
+    border: 1px solid $color-primary;
+  }
+
+  &--sm {
+    width: 32px;
+    height: 32px;
+    font-size: rem(12);
+  }
+
   &--md {
     width: 40px;
     height: 40px;
-    font-size: 14px;
+    font-size: rem(14);
   }
 
   &--lg {
     width: 60px;
     height: 60px;
-    font-size: 20px;
+    font-size: rem(20);
   }
 
   &__img {

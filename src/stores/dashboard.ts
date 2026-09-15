@@ -3,14 +3,8 @@ import { defineStore } from 'pinia'
 
 import { useAsyncState } from '@/composables/use_async_state'
 import { loadDashboard } from '@/services/dashboard_service'
-import { CHECKLIST_SUBTITLE } from '@/types/checklist'
-import type { ChecklistItem, ChecklistState } from '@/types/checklist'
-
-function stateFor(index: number, active: number): ChecklistState {
-  if (index < active) return 'done'
-  if (index === active) return 'active'
-  return 'pending'
-}
+import { deriveChecklist } from '@/utils/checklist'
+import type { ChecklistItem } from '@/types/checklist'
 
 /**
  * Thin Pinia store — delegates data access to the service layer.
@@ -33,10 +27,7 @@ export const useDashboardStore = defineStore('dashboard', () => {
   })
 
   const checklist = computed<ChecklistItem[]>(() =>
-    steps.value.map((step, index) => {
-      const state = stateFor(index, activeStep.value)
-      return { ...step, state, subtitle: CHECKLIST_SUBTITLE[state] }
-    })
+    deriveChecklist(steps.value, activeStep.value)
   )
 
   function setActiveStep(index: number): void {

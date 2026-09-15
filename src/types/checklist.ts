@@ -13,10 +13,3 @@ export interface ChecklistItem extends ChecklistStep {
   state: ChecklistState
   subtitle: string
 }
-
-// Subtitle shown for each state.
-export const CHECKLIST_SUBTITLE: Record<ChecklistState, string> = {
-  done: 'Completato',
-  active: 'Step attuale • Azione richiesta',
-  pending: 'In attesa'
-}

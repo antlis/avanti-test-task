@@ -66,7 +66,7 @@ const initials = computed(() =>
           </AvantiBadge>
         </button>
         <div class="header__profile">
-          <AvantiAvatar :src="user.avatar" :alt="user.name" size="sm" />
+          <AvantiAvatar :src="user.avatar" :alt="user.name" size="sm" bordered />
           <span class="header__initials">{{ initials }}</span>
         </div>
       </div>
@@ -169,10 +169,6 @@ const initials = computed(() =>
     display: flex;
     align-items: center;
     gap: 6px;
-
-    :deep(.avatar) {
-      border: 1px solid $color-primary;
-    }
   }
 
   &__bell {

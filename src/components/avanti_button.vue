@@ -1,7 +1,7 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    variant?: 'solid' | 'gradient' | 'inverse'
+    variant?: 'solid' | 'gradient' | 'inverse' | 'soft'
     size?: 'md' | 'compact' | 'lg'
     block?: boolean
     uppercase?: boolean
@@ -88,6 +88,17 @@ withDefaults(
   &--inverse {
     background: $color-surface;
     color: $color-primary;
+  }
+
+  // Soft teal-tinted pill (e.g. "Hai bisogno di aiuto?").
+  &--soft {
+    background: $color-primary-tint;
+    color: $color-primary;
+    border-radius: $radius-pill;
+
+    &:not(:disabled):hover {
+      background: $color-primary-tint-2;
+    }
   }
 
   // Hover (from Figma "Кнопка действия" Variant2): teal glow.

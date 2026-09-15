@@ -204,7 +204,7 @@ const formattedAmount = computed(
     display: none;
     align-items: center;
     gap: $space-4;
-    padding-top: $space-2;
+    padding-top: $space-4;
 
     @include desktop {
       display: flex;

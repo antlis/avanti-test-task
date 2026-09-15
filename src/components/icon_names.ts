@@ -9,3 +9,6 @@ export type IconName =
   | 'check'
   | 'chevron-down'
   | 'bank'
+  | 'database'
+  | 'lock-open'
+  | 'wallet'

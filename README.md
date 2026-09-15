@@ -80,7 +80,7 @@ Screen: **"Дом готовые этапы"** (Avanti dashboard). Built and rev
 - [x] `avanti_balance_card.vue`
 - [ ] `avanti_card.vue`
 - [ ] `avanti_state_view.vue` (loading / error / empty / retry)
-- [ ] `avanti_sblocco_card.vue` (+ `avanti_sblocco_step.vue`)
+- [x] `avanti_process_card.vue` (+ `avanti_process_step.vue`)
 - [ ] `avanti_progress_segments.vue`
 - [ ] `avanti_checklist_card.vue` (+ `avanti_checklist_item.vue`)
 - [ ] `avanti_chat_popup.vue`

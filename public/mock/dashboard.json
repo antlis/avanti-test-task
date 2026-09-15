@@ -1,0 +1,48 @@
+{
+  "balance": {
+    "label": "Il tuo saldo",
+    "sublabel": "Importo approvato dai nostri partner",
+    "status": "Pronto al prelievo",
+    "amount": 12000,
+    "currency": "€",
+    "product": "Prestito personale",
+    "tan": 3.8,
+    "footnote": "Fondi disponibili dopo l'approvazione dei documenti"
+  },
+  "process": [
+    {
+      "icon": "database",
+      "title": "Verifica completata",
+      "description": "I Suoi dati sono stati verificati con successo."
+    },
+    {
+      "icon": "lock-open",
+      "title": "Account sbloccato",
+      "description": "Il Suo account è stato sbloccato."
+    },
+    {
+      "icon": "wallet",
+      "title": "Prelievo disponibile",
+      "description": "Può effettuare il prelievo dei fondi quando desidera.",
+      "active": true
+    }
+  ],
+  "checklist": [
+    { "icon": "chart", "title": "Simulazione completata", "subtitle": "Completato", "state": "done" },
+    { "icon": "shield", "title": "Credito approvato", "subtitle": "Completato", "state": "done" },
+    { "icon": "profile", "title": "Account creato", "subtitle": "Completato", "state": "done" },
+    {
+      "icon": "upload",
+      "title": "Documenti caricati",
+      "subtitle": "Step attuale • Azione richiesta",
+      "state": "active"
+    },
+    { "icon": "edit", "title": "Contratto firmato", "subtitle": "In attesa", "state": "pending" }
+  ],
+  "assistant": {
+    "name": "Schierano Deborah",
+    "message": "Salve. Mi chiamo Deborah, sarò la sua consulente personale dedicata.",
+    "avatar": "/assets/avatar-deborah.png",
+    "unread": 2
+  }
+}

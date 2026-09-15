@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import AvantiBadge from '@/components/avanti_badge.vue'
 import AvantiButton from '@/components/avanti_button.vue'
 import AvantiIcon from '@/components/avanti_icon.vue'
+import { formatMoney } from '@/utils/format'
 
 const props = withDefaults(
   defineProps<{
@@ -21,9 +22,7 @@ const props = withDefaults(
 
 const emit = defineEmits<{ withdraw: []; openPdf: [] }>()
 
-const formattedAmount = computed(
-  () => `${props.currency} ${props.amount.toLocaleString('fr-FR')}`
-)
+const formattedAmount = computed(() => formatMoney(props.amount, props.currency))
 </script>
 
 <template>

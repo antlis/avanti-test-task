@@ -1,16 +1,29 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+
 import AvantiHeader from '@/components/avanti_header.vue'
 import AvantiBottomNav from '@/components/avanti_bottom_nav.vue'
-import { currentUser } from '@/config/user'
+import { useProfileStore } from '@/stores/profile'
 
 // Stub screen for in-scope-but-unbuilt routes (Documenti / Profilo), so the
 // primary navigation resolves to real destinations.
 defineProps<{ title: string }>()
+
+const profileStore = useProfileStore()
+const { profile, notifications } = storeToRefs(profileStore)
+
+onMounted(() => profileStore.load())
 </script>
 
 <template>
   <div class="placeholder">
-    <AvantiHeader :user="currentUser" :notification-count="4" />
+    <AvantiHeader
+      v-if="profile"
+      :user="profile"
+      :assistenza-count="notifications.assistenza"
+      :bell-count="notifications.bell"
+    />
 
     <main class="placeholder__body">
       <h1 class="placeholder__title">{{ title }}</h1>

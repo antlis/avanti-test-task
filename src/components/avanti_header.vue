@@ -15,8 +15,12 @@ interface HeaderUser {
 }
 
 const props = withDefaults(
-  defineProps<{ user: HeaderUser; notificationCount?: number }>(),
-  { notificationCount: 0 }
+  defineProps<{
+    user: HeaderUser
+    assistenzaCount?: number
+    bellCount?: number
+  }>(),
+  { assistenzaCount: 0, bellCount: 0 }
 )
 
 const initials = computed(() =>
@@ -45,7 +49,7 @@ const initials = computed(() =>
 
       <!-- Desktop: full Assistenza button -->
       <div class="header__assistenza">
-        <AvantiAssistenzaButton :count="notificationCount" />
+        <AvantiAssistenzaButton :count="assistenzaCount" />
       </div>
 
       <!-- Mobile: notification bell + avatar -->
@@ -53,12 +57,12 @@ const initials = computed(() =>
         <button type="button" class="header__bell" aria-label="Notifiche">
           <AvantiIcon name="bell" :size="24" />
           <AvantiBadge
-            v-if="notificationCount > 0"
+            v-if="bellCount > 0"
             variant="count"
             tone="danger"
             class="header__bell-badge"
           >
-            {{ notificationCount }}
+            {{ bellCount }}
           </AvantiBadge>
         </button>
         <div class="header__profile">

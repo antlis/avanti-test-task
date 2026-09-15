@@ -37,6 +37,7 @@ const emit = defineEmits<{ open: [] }>()
   align-items: center;
   gap: $space-3;
   width: 300px;
+  max-width: calc(100vw - #{$space-4} * 2);
   padding: $space-6 $space-4;
   text-align: left;
   background: $color-primary;

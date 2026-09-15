@@ -7,6 +7,7 @@ import AvantiProgressSegments from '@/components/avanti_progress_segments.vue'
 import type { ChecklistItem } from '@/types/checklist'
 
 const props = defineProps<{ title: string; items: ChecklistItem[] }>()
+const emit = defineEmits<{ select: [index: number] }>()
 
 const open = ref(true)
 const completed = computed(
@@ -36,8 +37,12 @@ const completed = computed(
 
     <div v-show="open" class="checklist__body">
       <ul class="checklist__list">
-        <li v-for="item in items" :key="item.title" class="checklist__row">
-          <AvantiChecklistItem v-bind="item" />
+        <li
+          v-for="(item, index) in items"
+          :key="item.title"
+          class="checklist__row"
+        >
+          <AvantiChecklistItem v-bind="item" @select="emit('select', index)" />
         </li>
       </ul>
 

@@ -20,7 +20,16 @@ const payload: DashboardData = {
     footnote: 'note'
   },
   process: [],
-  checklist: [],
+  checklist: {
+    activeStep: 3,
+    steps: [
+      { icon: 'chart', title: 'Simulazione completata' },
+      { icon: 'shield', title: 'Credito approvato' },
+      { icon: 'profile', title: 'Account creato' },
+      { icon: 'upload', title: 'Documenti caricati' },
+      { icon: 'edit', title: 'Contratto firmato' }
+    ]
+  },
   assistant: { name: 'Deborah', message: 'ciao', avatar: '', unread: 2 }
 }
 
@@ -40,6 +49,46 @@ describe('useDashboardStore', () => {
     expect(store.balance?.product).toBe('Prestito personale')
     expect(store.balance?.tan).toBe(3.8)
     expect(store.assistant?.unread).toBe(2)
+  })
+
+  it('derives checklist states from the active step', async () => {
+    vi.mocked(loadDashboard).mockResolvedValue(payload)
+    const store = useDashboardStore()
+
+    await store.load()
+    await flushPromises()
+
+    expect(store.activeStep).toBe(3)
+    expect(store.checklist.map((i) => i.state)).toEqual([
+      'done',
+      'done',
+      'done',
+      'active',
+      'pending'
+    ])
+    // Subtitle follows the derived state.
+    expect(store.checklist[3].subtitle).toBe('Step attuale • Azione richiesta')
+  })
+
+  it('setActiveStep re-derives states and clamps to range', async () => {
+    vi.mocked(loadDashboard).mockResolvedValue(payload)
+    const store = useDashboardStore()
+    await store.load()
+    await flushPromises()
+
+    store.setActiveStep(1)
+    expect(store.checklist.map((i) => i.state)).toEqual([
+      'done',
+      'active',
+      'pending',
+      'pending',
+      'pending'
+    ])
+
+    store.setActiveStep(99)
+    expect(store.activeStep).toBe(4)
+    store.setActiveStep(-5)
+    expect(store.activeStep).toBe(0)
   })
 
   it('fetches only once across repeated load() calls', async () => {

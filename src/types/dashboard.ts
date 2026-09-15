@@ -1,5 +1,5 @@
 import type { ProcessStep } from '@/types/process'
-import type { ChecklistItem } from '@/types/checklist'
+import type { ChecklistStep } from '@/types/checklist'
 
 // Approved-loan balance shown in the teal card.
 export interface Balance {
@@ -21,10 +21,16 @@ export interface AssistantContact {
   unread: number
 }
 
+// Verification stepper: the ordered steps plus the currently active one.
+export interface Checklist {
+  activeStep: number
+  steps: ChecklistStep[]
+}
+
 // Payload of GET /api/dashboard.
 export interface DashboardData {
   balance: Balance
   process: ProcessStep[]
-  checklist: ChecklistItem[]
+  checklist: Checklist
   assistant: AssistantContact
 }

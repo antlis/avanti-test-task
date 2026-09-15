@@ -66,6 +66,7 @@ onMounted(() => {
             <AvantiChecklistCard
               title="Fondi pronti per il&#10;prelievo - procedi ora!"
               :items="checklist"
+              @select="dashboardStore.setActiveStep"
             />
           </div>
         </div>

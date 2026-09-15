@@ -3,12 +3,15 @@ import AvantiIcon from '@/components/avanti_icon.vue'
 import type { ChecklistItem } from '@/types/checklist'
 
 defineProps<ChecklistItem>()
+const emit = defineEmits<{ select: [] }>()
 </script>
 
 <template>
-  <div
+  <button
+    type="button"
     class="citem"
     :class="{ 'citem--active': state === 'active', 'citem--pending': state === 'pending' }"
+    @click="emit('select')"
   >
     <span class="citem__badge">
       <AvantiIcon :name="icon" :size="22" />
@@ -22,7 +25,7 @@ defineProps<ChecklistItem>()
     <span class="citem__check">
       <AvantiIcon name="check" :size="16" />
     </span>
-  </div>
+  </button>
 </template>
 
 <style lang="scss" scoped>
@@ -30,7 +33,18 @@ defineProps<ChecklistItem>()
   display: flex;
   align-items: center;
   gap: $space-4;
+  width: 100%;
   padding-block: $space-4;
+  padding-inline: 0;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
 
   &__badge {
     display: inline-flex;

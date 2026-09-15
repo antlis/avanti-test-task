@@ -27,18 +27,16 @@
       "active": true
     }
   ],
-  "checklist": [
-    { "icon": "chart", "title": "Simulazione completata", "subtitle": "Completato", "state": "done" },
-    { "icon": "shield", "title": "Credito approvato", "subtitle": "Completato", "state": "done" },
-    { "icon": "profile", "title": "Account creato", "subtitle": "Completato", "state": "done" },
-    {
-      "icon": "upload",
-      "title": "Documenti caricati",
-      "subtitle": "Step attuale • Azione richiesta",
-      "state": "active"
-    },
-    { "icon": "edit", "title": "Contratto firmato", "subtitle": "In attesa", "state": "pending" }
-  ],
+  "checklist": {
+    "activeStep": 3,
+    "steps": [
+      { "icon": "chart", "title": "Simulazione completata" },
+      { "icon": "shield", "title": "Credito approvato" },
+      { "icon": "profile", "title": "Account creato" },
+      { "icon": "upload", "title": "Documenti caricati" },
+      { "icon": "edit", "title": "Contratto firmato" }
+    ]
+  },
   "assistant": {
     "name": "Schierano Deborah",
     "message": "Salve. Mi chiamo Deborah, sarò la sua consulente personale dedicata.",

@@ -22,7 +22,7 @@ vi.mock('@/services/dashboard_service', () => ({
       footnote: ''
     },
     process: [],
-    checklist: [],
+    checklist: { activeStep: 0, steps: [] },
     assistant: { name: 'Deborah', message: '', avatar: '', unread: 2 }
   })
 }))

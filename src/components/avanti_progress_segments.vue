@@ -3,7 +3,13 @@ withDefaults(defineProps<{ total: number; completed: number }>(), {})
 </script>
 
 <template>
-  <div class="segments" role="progressbar" :aria-valuenow="completed" :aria-valuemax="total">
+  <div
+    class="segments"
+    role="progressbar"
+    aria-valuemin="0"
+    :aria-valuenow="completed"
+    :aria-valuemax="total"
+  >
     <span
       v-for="n in total"
       :key="n"

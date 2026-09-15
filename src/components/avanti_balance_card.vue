@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import AvantiBadge from '@/components/avanti_badge.vue'
 import AvantiButton from '@/components/avanti_button.vue'
 import AvantiIcon from '@/components/avanti_icon.vue'
-import { formatMoney } from '@/utils/format'
+import { formatMoney, formatPercent } from '@/utils/format'
 
 const props = withDefaults(
   defineProps<{
@@ -13,7 +13,8 @@ const props = withDefaults(
     status: string
     amount: number
     currency?: string
-    caption: string
+    product: string
+    tan: number
     footnote?: string
     ctaLabel?: string
   }>(),
@@ -23,6 +24,7 @@ const props = withDefaults(
 const emit = defineEmits<{ withdraw: []; openPdf: [] }>()
 
 const formattedAmount = computed(() => formatMoney(props.amount, props.currency))
+const caption = computed(() => `${props.product} • TAN ${formatPercent(props.tan)}`)
 </script>
 
 <template>
@@ -88,7 +90,7 @@ const formattedAmount = computed(() => formatMoney(props.amount, props.currency)
   box-shadow: $shadow-teal;
   color: $color-surface;
 
-  @media (max-width: 350px) {
+  @include narrow {
     padding: $space-4;
   }
 
@@ -141,12 +143,12 @@ const formattedAmount = computed(() => formatMoney(props.amount, props.currency)
     display: flex;
     flex-direction: column;
     gap: $space-1;
-    margin-top: 12px;
-    margin-bottom: 16px;
+    margin-top: $space-3;
+    margin-bottom: $space-4;
 
     @include desktop {
-      margin-top: 16px;
-      margin-bottom: 16px;
+      margin-top: $space-4;
+      margin-bottom: $space-4;
     }
   }
 
@@ -163,7 +165,7 @@ const formattedAmount = computed(() => formatMoney(props.amount, props.currency)
     letter-spacing: -0.015em;
     line-height: 1.1;
 
-    @media (max-width: 350px) {
+    @include narrow {
       font-size: rem(28);
     }
 

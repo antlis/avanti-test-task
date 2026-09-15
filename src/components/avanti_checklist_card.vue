@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import AvantiIcon from '@/components/avanti_icon.vue'
 import AvantiChecklistItem from '@/components/avanti_checklist_item.vue'
@@ -9,7 +9,9 @@ import type { ChecklistItem } from '@/types/checklist'
 const props = defineProps<{ title: string; items: ChecklistItem[] }>()
 
 const open = ref(true)
-const completed = props.items.length
+const completed = computed(
+  () => props.items.filter((item) => item.state === 'done').length
+)
 </script>
 
 <template>

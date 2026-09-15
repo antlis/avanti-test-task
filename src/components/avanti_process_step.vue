@@ -35,7 +35,7 @@ defineProps<ProcessStep>()
 
     // Current step pops with a teal halo (Figma spec).
     &--active {
-      box-shadow: 0 0 15.39px $color-primary;
+      box-shadow: $shadow-glow-active;
     }
   }
 

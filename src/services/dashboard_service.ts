@@ -1,11 +1,10 @@
-import { http } from '@/services/http'
+import { fetchDashboard } from '@/repositories/dashboard_repository'
 import type { DashboardData } from '@/types/dashboard'
 
 /**
- * GET /api/dashboard — the "Dom готовые этапы" screen payload.
- * Backed by a bundled mock JSON until VITE_API_BASE points at the Laravel API.
+ * Business logic for dashboard.
+ * Thin wrapper — keeps the repository ↔ store boundary clean.
  */
-export async function fetchDashboard(): Promise<DashboardData> {
-  const { data } = await http.get<DashboardData>('/mock/dashboard.json')
-  return data
+export async function loadDashboard(): Promise<DashboardData> {
+  return fetchDashboard()
 }

@@ -6,8 +6,10 @@ const emit = defineEmits<{ retry: [] }>()
 </script>
 
 <template>
-  <p v-if="loading" class="state state--loading">Caricamento…</p>
-  <div v-else-if="error" class="state state--error">
+  <p v-if="loading" class="state state--loading" role="status" aria-live="polite">
+    Caricamento…
+  </p>
+  <div v-else-if="error" class="state state--error" role="alert" aria-live="assertive">
     <p>Impossibile caricare i dati.</p>
     <button type="button" class="state__retry" @click="emit('retry')">
       Riprova

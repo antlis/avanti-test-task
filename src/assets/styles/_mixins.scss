@@ -7,6 +7,13 @@
   }
 }
 
+// Max-width cap for the few narrow-phone overrides that must scope downward.
+@mixin narrow {
+  @media (max-width: $bp-narrow) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @include from($bp-tablet) {
     @content;

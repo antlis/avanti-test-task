@@ -31,7 +31,8 @@ const emit = defineEmits<{ open: [] }>()
 </template>
 
 <style lang="scss" scoped>
-// Floating assistant notification — desktop only (hidden on mobile by the view).
+// Floating assistant notification. The parent view fixes its position
+// (bottom-right; above the bottom nav on mobile).
 .chat {
   display: flex;
   align-items: center;

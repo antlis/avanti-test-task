@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 
-import { fetchAccount } from '@/services/profile_service'
+import { loadProfile } from '@/services/profile_service'
 import { useProfileStore } from '@/stores/profile'
 import type { AccountData } from '@/types/profile'
 
-vi.mock('@/services/profile_service', () => ({ fetchAccount: vi.fn() }))
+vi.mock('@/services/profile_service', () => ({ loadProfile: vi.fn() }))
 
 const account: AccountData = {
   profile: { name: 'Marco Rossi', email: 'ikoei@09gmail.com', avatar: '/a.png' },
@@ -15,11 +15,11 @@ const account: AccountData = {
 describe('useProfileStore', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
-    vi.mocked(fetchAccount).mockReset()
+    vi.mocked(loadProfile).mockReset()
   })
 
   it('exposes the profile and notification counters after load', async () => {
-    vi.mocked(fetchAccount).mockResolvedValue(account)
+    vi.mocked(loadProfile).mockResolvedValue(account)
     const store = useProfileStore()
 
     await store.load()

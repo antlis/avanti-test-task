@@ -21,8 +21,7 @@ const breadcrumb = [
 const profileStore = useProfileStore()
 const dashboardStore = useDashboardStore()
 const { profile, notifications } = storeToRefs(profileStore)
-const { balance, process, checklist, assistant, balanceCaption } =
-  storeToRefs(dashboardStore)
+const { balance, process, checklist, assistant } = storeToRefs(dashboardStore)
 
 onMounted(() => {
   profileStore.load()
@@ -54,7 +53,8 @@ onMounted(() => {
               :status="balance.status"
               :amount="balance.amount"
               :currency="balance.currency"
-              :caption="balanceCaption"
+              :product="balance.product"
+              :tan="balance.tan"
               :footnote="balance.footnote"
             />
             <AvantiProcessCard

@@ -62,6 +62,13 @@ withDefaults(
     height: 43px; // Figma: filled tab height
     padding: 4px $space-4;
     font-size: rem(12);
+
+    // Very narrow phones: icon-only to match the other tabs.
+    @include narrow {
+      .assistenza__label {
+        display: none;
+      }
+    }
   }
 
   &__label {

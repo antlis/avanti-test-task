@@ -4,13 +4,13 @@ import { createPinia } from 'pinia'
 import { createRouter, createMemoryHistory } from 'vue-router'
 
 vi.mock('@/services/profile_service', () => ({
-  fetchAccount: vi.fn().mockResolvedValue({
+  loadProfile: vi.fn().mockResolvedValue({
     profile: { name: 'Marco Rossi', email: 'm@r.it', avatar: '' },
     notifications: { assistenza: 4, bell: 4 }
   })
 }))
 vi.mock('@/services/dashboard_service', () => ({
-  fetchDashboard: vi.fn().mockResolvedValue({
+  loadDashboard: vi.fn().mockResolvedValue({
     balance: {
       label: 'Il tuo saldo',
       sublabel: '',

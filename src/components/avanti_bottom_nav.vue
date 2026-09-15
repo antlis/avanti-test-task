@@ -41,13 +41,5 @@ const route = useRoute()
   @include desktop {
     display: none;
   }
-
-  // Very narrow phones: icon-only tabs to avoid label crowding.
-  @media (max-width: 350px) {
-    :deep(.nav-button__label),
-    :deep(.assistenza__label) {
-      display: none;
-    }
-  }
 }
 </style>

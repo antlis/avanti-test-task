@@ -88,7 +88,7 @@ const emit = defineEmits<{ help: [] }>()
     border-radius: $radius-lg;
 
     // Very narrow phones: drop the connectors and tighten the columns.
-    @media (max-width: 350px) {
+    @include narrow {
       gap: 2px;
     }
 
@@ -121,7 +121,7 @@ const emit = defineEmits<{ help: [] }>()
     background: $color-primary;
     border-radius: $radius-pill;
 
-    @media (max-width: 350px) {
+    @include narrow {
       display: none;
     }
   }

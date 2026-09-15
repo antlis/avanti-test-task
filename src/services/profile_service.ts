@@ -1,11 +1,11 @@
-import { http } from '@/services/http'
+import { fetchAccount } from '@/repositories/profile_repository'
 import type { AccountData } from '@/types/profile'
 
 /**
- * GET /api/me — the global account context (profile + notification counters).
- * Backed by a bundled mock JSON until VITE_API_BASE points at the Laravel API.
+ * Business logic for profile.
+ * Thin wrapper — mostly pass-through for now, but keeps the
+ * repository ↔ store boundary clean for when Laravel lands.
  */
-export async function fetchAccount(): Promise<AccountData> {
-  const { data } = await http.get<AccountData>('/mock/me.json')
-  return data
+export async function loadProfile(): Promise<AccountData> {
+  return fetchAccount()
 }

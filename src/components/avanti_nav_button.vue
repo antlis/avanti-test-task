@@ -61,6 +61,13 @@ withDefaults(
     flex-direction: column;
     justify-content: center;
     gap: $space-1;
+
+    // Very narrow phones: icon-only to avoid label crowding.
+    @include narrow {
+      .nav-button__label {
+        display: none;
+      }
+    }
   }
 
   &--active {

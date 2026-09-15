@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue'
 
 const props = withDefaults(
-  defineProps<{ src?: string; alt?: string; size?: 'md' | 'lg' }>(),
+  defineProps<{ src?: string; alt?: string; size?: 'sm' | 'md' | 'lg' }>(),
   { alt: '', size: 'md' }
 )
 
@@ -52,6 +52,12 @@ const initials = computed(() =>
   background: $color-primary-tint;
   color: $color-primary;
   font-weight: $fw-semibold;
+
+  &--sm {
+    width: 32px;
+    height: 32px;
+    font-size: rem(12);
+  }
 
   &--md {
     width: 40px;

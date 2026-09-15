@@ -4,8 +4,10 @@ import AvantiPageBar from '@/components/avanti_page_bar.vue'
 import AvantiBottomNav from '@/components/avanti_bottom_nav.vue'
 import AvantiBalanceCard from '@/components/avanti_balance_card.vue'
 import AvantiProcessCard from '@/components/avanti_process_card.vue'
+import AvantiChecklistCard from '@/components/avanti_checklist_card.vue'
 import { currentUser as user } from '@/config/user'
 import type { ProcessStep } from '@/types/process'
+import type { ChecklistItem } from '@/types/checklist'
 
 // Page content will move to the Pinia store in Round 2; literals for now.
 const breadcrumb = [
@@ -39,6 +41,18 @@ const processSteps: ProcessStep[] = [
     active: true
   }
 ]
+const checklistItems: ChecklistItem[] = [
+  { icon: 'chart', title: 'Simulazione completata', subtitle: 'Completato', state: 'done' },
+  { icon: 'shield', title: 'Credito approvato', subtitle: 'Completato', state: 'done' },
+  { icon: 'profile', title: 'Account creato', subtitle: 'Completato', state: 'done' },
+  {
+    icon: 'upload',
+    title: 'Documenti caricati',
+    subtitle: 'Step attuale • Azione richiesta',
+    state: 'active'
+  },
+  { icon: 'edit', title: 'Contratto firmato', subtitle: 'In attesa', state: 'pending' }
+]
 </script>
 
 <template>
@@ -63,7 +77,12 @@ const processSteps: ProcessStep[] = [
             :steps="processSteps"
           />
         </div>
-        <!-- verification checklist (right column) comes next -->
+        <div class="dashboard__right">
+          <AvantiChecklistCard
+            title="Fondi pronti per il&#10;prelievo - procedi ora!"
+            :items="checklistItems"
+          />
+        </div>
       </div>
     </main>
 
@@ -99,15 +118,29 @@ const processSteps: ProcessStep[] = [
     }
   }
 
+  // Columns share the row fluidly, keeping the Figma 792:464 proportion
   &__left {
     display: flex;
     flex-direction: column;
     gap: $space-6;
 
     @include desktop {
-      width: 792px;
-      flex-shrink: 0;
+      flex: 792 1 0;
+      min-width: 0;
       gap: $space-8;
+    }
+  }
+
+  // Right column (checklist) is desktop-only; the mobile design omits it.
+  &__right {
+    display: none;
+
+    @include desktop {
+      display: flex;
+      flex-direction: column;
+      gap: $space-6;
+      flex: 464 1 0;
+      min-width: 0;
     }
   }
 }

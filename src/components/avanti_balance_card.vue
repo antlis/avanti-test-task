@@ -114,7 +114,6 @@ const formattedAmount = computed(
     }
   }
 
-  // Mobile: light, sentence case. Desktop: semibold uppercase.
   &__label {
     font-size: rem(13);
     font-weight: 300;
@@ -189,8 +188,8 @@ const formattedAmount = computed(
     }
   }
 
-  // The main CTA glows white to pop on the gradient.
   &__cta {
+    border: 1px solid $color-primary;
     box-shadow: 0 0 22px rgba(255, 255, 255, 0.9);
     font-size: rem(16);
   }

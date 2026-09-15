@@ -12,3 +12,7 @@ export type IconName =
   | 'database'
   | 'lock-open'
   | 'wallet'
+  | 'chart'
+  | 'shield'
+  | 'upload'
+  | 'edit'

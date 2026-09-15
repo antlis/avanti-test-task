@@ -62,7 +62,7 @@ const initials = computed(() =>
           </AvantiBadge>
         </button>
         <div class="header__profile">
-          <AvantiAvatar :src="user.avatar" :alt="user.name" size="md" />
+          <AvantiAvatar :src="user.avatar" :alt="user.name" size="sm" />
           <span class="header__initials">{{ initials }}</span>
         </div>
       </div>
@@ -75,7 +75,6 @@ const initials = computed(() =>
   background: $color-surface;
   border-bottom: 1px solid $color-border;
 
-  // Full-bleed bar; content column capped at the Figma design width.
   &__bar {
     @include container;
     display: flex;

@@ -54,7 +54,7 @@ const emit = defineEmits<{ help: [] }>()
   &__head {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: $space-3;
     margin-bottom: $space-5;
@@ -99,6 +99,7 @@ const emit = defineEmits<{ help: [] }>()
 
   &__help {
     flex-shrink: 0;
+    padding: 6px 10px;
     font-size: rem(11);
     font-weight: $fw-bold;
 

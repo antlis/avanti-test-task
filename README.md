@@ -2,6 +2,8 @@
 
 Responsive personal-cabinet screen from the Avanti design, built as a component-driven SPA.
 
+**Live demo:** https://avanti-test-task-alpha.vercel.app/
+
 ## Stack
 
 - **Vue 3** (`<script setup>`) + **TypeScript**
@@ -50,20 +52,38 @@ src/
   components/        Reusable components (flat, one file each)
   composables/       Reusable logic (use_async_state, …)
   config/            App constants (navigation, …)
-  router/            Route definitions
-  services/          Axios instance + API services
-  stores/            Pinia stores
+  lib/               Axios instance (baseURL via VITE_API_BASE)
+  repositories/      Data access — HTTP calls only
+  services/          Thin business-logic layer over repositories
+  stores/            Pinia stores (state + derived getters)
   types/             Shared TS types
+  utils/             Pure helpers (format money/percent, checklist derivation)
   views/             Route-level screens
 tests/
   unit/              Vitest + Vue Test Utils
   e2e/               Playwright
+public/mock/         Mock JSON payloads (stand in for the Laravel REST API)
 public/assets/       Logo + avatar assets exported from Figma
 ```
 
+## Data flow (Laravel-ready)
+
+State is loaded through a layered pipeline so swapping the mock JSON for a real
+Laravel API only touches one layer:
+
+```
+component → store (Pinia) → service → repository → lib/http (Axios)
+```
+
+- **repository** does the HTTP call (`/mock/*.json` today; point `VITE_API_BASE`
+  at the Laravel host to switch).
+- **service** is a thin business-logic wrapper.
+- **store** exposes reactive state + derived getters (loading/error via the
+  `use_async_state` composable); pure derivation lives in `utils/`.
+
 ## Component roadmap
 
-Screen: **"Дом готовые этапы"** (Avanti dashboard). Built and reviewed one at a time:
+Screen: **"Уровень 4 — Дом готовые этапы"** (Avanti dashboard), desktop + mobile.
 
 - [x] `avanti_icon.vue`
 - [x] `avanti_badge.vue`
@@ -78,14 +98,15 @@ Screen: **"Дом готовые этапы"** (Avanti dashboard). Built and rev
 - [x] `avanti_page_bar.vue` (desktop-only)
 - [x] `avanti_bottom_nav.vue` (mobile-only)
 - [x] `avanti_balance_card.vue`
-- [ ] `avanti_card.vue`
-- [ ] `avanti_state_view.vue` (loading / error / empty / retry)
+- [x] `avanti_state_view.vue` (loading / error / retry)
 - [x] `avanti_process_card.vue` (+ `avanti_process_step.vue`)
-- [ ] `avanti_progress_segments.vue`
-- [ ] `avanti_checklist_card.vue` (+ `avanti_checklist_item.vue`)
-- [ ] `avanti_chat_popup.vue`
+- [x] `avanti_progress_segments.vue`
+- [x] `avanti_checklist_card.vue` (+ `avanti_checklist_item.vue`) — interactive stepper
+- [x] `avanti_chat_popup.vue` (assistant bubble, floats above the mobile bottom nav)
 
 ## Deployment (Vercel)
+
+Deployed at **https://avanti-test-task-alpha.vercel.app/**.
 
 `vercel.json` is included (SPA rewrites, `dist` output). Push to GitHub and import
 the repo in Vercel, or run `vercel` from the CLI.
